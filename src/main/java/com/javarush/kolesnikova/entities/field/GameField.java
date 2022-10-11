@@ -1,4 +1,11 @@
-package com.javarush.kolesnikova.entities.units;
+package com.javarush.kolesnikova.entities.field;
 
-public class GameFiel {
+import static com.javarush.kolesnikova.constants.FieldSize.*;
+
+public class GameField {
+    private static final Cell[][] field = new Cell[getRow()][getCol()];
+
+
+
+
 }

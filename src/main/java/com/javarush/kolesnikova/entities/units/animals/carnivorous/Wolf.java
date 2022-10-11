@@ -1,6 +1,7 @@
-package com.javarush.kolesnikova.entities.units.carnivorous;
+package com.javarush.kolesnikova.entities.units.animals.carnivorous;
 
-public class Wolf implements Carnivore {
+
+public class Wolf extends Carnivore  {
 
 
 }

@@ -1,6 +1,6 @@
-package com.javarush.kolesnikova.entities.units.plants;
+package com.javarush.kolesnikova.entities.units;
 
 import com.javarush.kolesnikova.entities.units.Unit;
 
-public interface Plant extends Unit {
+public interface Plants{
 }

@@ -1,8 +1,11 @@
-package com.javarush.kolesnikova.entities.units.carnivorous;
+package com.javarush.kolesnikova.entities.units.animals.carnivorous;
 
 
+import com.javarush.kolesnikova.entities.units.Animals;
 import com.javarush.kolesnikova.entities.units.Unit;
 
-interface Carnivore extends Unit {
+ public abstract class Carnivore implements Unit {
+
 
 }
+
