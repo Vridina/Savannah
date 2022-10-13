@@ -1,4 +1,4 @@
-package com.javarush.kolesnikova.factory.unitsMaker;
+package com.javarush.kolesnikova.factory.unitsFactory;
 
 import com.javarush.kolesnikova.entities.units.carnivorous.Wolf;
 

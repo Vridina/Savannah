@@ -13,7 +13,7 @@ public class Cell {
     private final int x;
     private final int y;
 
-    // каждый тип юнитов - это отдельный поток, создаем сет юнитов
+
     private Set<Unit> unitsInCell = new HashSet<>();
 
     public Cell(int x, int y) {
