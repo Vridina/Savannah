@@ -21,9 +21,12 @@ public class PropertiesUnit {
     private final Double kilogramOfFood;
 
 
-   public static final Map<String, PropertiesUnit> unitsPropertiesMap = Map.of(
+   private static final Map<String, PropertiesUnit> unitsPropertiesMap = Map.of(
             "Wolf", new PropertiesUnit("","Волк", 50.0, 3, 30, 8.0),
             "Rabbit", new PropertiesUnit("","Заяц", 20., 2, 150, 0.45));
 
+   public PropertiesUnit unitsProperties (String unit){
+       return unitsPropertiesMap.get(unit);
+   }
 
 }
