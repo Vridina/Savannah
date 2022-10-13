@@ -6,7 +6,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public interface Reproduction {
-    void reproduction();
+    void reproduction(Unit unit);
+    // вз€ть €чейку
+    //узнать шаг???
+    // проверить тип юнита
+    // проверить сколько юнитов данного типа в €чейке
+    // создать юнитов  (?)
+
+    //
+    // если юниты уже есть то размножить их
+
+
+
 
 //    final  int cores = Runtime.getRuntime().availableProcessors();
 //

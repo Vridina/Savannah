@@ -25,7 +25,7 @@ public class Unit
 
 
     @Override
-    public void reproduction() {
+    public void reproduction(Unit unit) {
 
     }
 }
