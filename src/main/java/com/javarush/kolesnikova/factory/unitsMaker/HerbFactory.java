@@ -4,11 +4,11 @@ package com.javarush.kolesnikova.factory.unitsMaker;
 
 import com.javarush.kolesnikova.entities.units.plants.Herb;
 
-public class HerbMaker extends UnitMaker {
+public class HerbFactory  implements UnitFactory {
 
 
     @Override
-    public Herb makeUnit() {
+    public  Herb makeUnit() {
         return new Herb();
     }
 }

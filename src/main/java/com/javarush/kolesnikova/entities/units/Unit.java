@@ -2,9 +2,13 @@ package com.javarush.kolesnikova.entities.units;
 
 import com.javarush.kolesnikova.actions.Reproduction;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 
 @EqualsAndHashCode
+@Setter
+@Getter
 public class Unit
         implements Runnable, Cloneable, Reproduction {
 
@@ -21,6 +25,9 @@ public class Unit
 
     @Override
     public void run() {
+        String s = getClass().getSimpleName();
+        System.out.println(s + " поток запустился");
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.javarush.kolesnikova.entities.units.animals.carnivorous;
+package com.javarush.kolesnikova.entities.units.carnivorous;
 
 
 

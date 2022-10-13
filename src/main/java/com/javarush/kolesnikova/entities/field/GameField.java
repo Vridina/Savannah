@@ -4,7 +4,7 @@ package com.javarush.kolesnikova.entities.field;
 
 public class GameField {
 
-    private static final int row = 10;
+    private static final int row = 2;
     private static final int col = 10;
 
 
@@ -15,8 +15,9 @@ public class GameField {
         for (int y = 0; y < row; y++) {
             for (int x = 0; x < col; x++) {
                 field[y][x] = new Cell(x, y);
+                System.out.print("-");
             }
-            System.out.println();
+            System.out.println("*");
         }
     }
 

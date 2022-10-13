@@ -3,6 +3,8 @@ package com.javarush.kolesnikova;
 
 import com.javarush.kolesnikova.entities.field.GameField;
 
+import static com.javarush.kolesnikova.factory.UnitsFactory.getUnitMaker;
+
 
 public class Runner {
 
@@ -11,8 +13,7 @@ public class Runner {
 
         GameField.createGame();
 
-
-
+        getUnitMaker("Wolf").run();
 
 
     }
