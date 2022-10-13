@@ -1,6 +1,8 @@
 package com.javarush.kolesnikova.entities.units;
 
-import com.javarush.kolesnikova.entities.units.Unit;
 
-public interface Plants{
+import com.javarush.kolesnikova.actions.Reproduction;
+
+public abstract class Plants extends Unit
+        implements Reproduction {
 }

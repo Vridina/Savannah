@@ -1,6 +1,6 @@
 package com.javarush.kolesnikova.exceptions;
 
-public class GameException extends Exception{
+public class GameException extends RuntimeException{
 
     public GameException() {
         super();

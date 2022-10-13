@@ -1,23 +1,14 @@
-package com.javarush.kolesnikova.entities.units;
+package com.javarush.kolesnikova.actions;
 
 
-import com.javarush.kolesnikova.actions.Eating;
-import com.javarush.kolesnikova.actions.Reproduction;
-import com.javarush.kolesnikova.actions.Running;
+import com.javarush.kolesnikova.entities.units.Unit;
 
-public abstract class Animals extends Unit
-        implements Reproduction, Eating, Running {
-    @Override
-    public void eating(Unit unit) {
 
-    }
+public interface Eating {
+    void eating(Unit init);
 
-    @Override
-    public void running(Unit unit) {
-
-    }
-
-//    void eat(Herbivore herbivore) {
+//
+//    void eat () {
 //        String carnivoreName = getClass().getSimpleName();
 //        String herbivoreName = herbivore.getClass().getSimpleName();
 //
@@ -31,12 +22,6 @@ public abstract class Animals extends Unit
 //        System.out.printf("%s съедает %s\n", carnivoreName, herbivoreName);
 //        System.out.printf("---Вес %s равен %f\n",  herbivoreName, herbivoreWeight);
 //        System.out.printf("---%s надо %f кг еды для насыщения\n",  carnivoreName, carnivoreKilogramOfFood);
-//
-//    }
-//
-//     void run1() {
-//        System.out.println(getClass().getSimpleName() + " бегает.");
-//
 //    }
 
 }

@@ -1,12 +1,32 @@
 package com.javarush.kolesnikova.entities.units;
 
+import com.javarush.kolesnikova.actions.Reproduction;
+import lombok.EqualsAndHashCode;
 
-public interface Unit extends Animals, Plants {
+
+@EqualsAndHashCode
+public class Unit
+        implements Runnable, Cloneable, Reproduction {
 
 
-    default void multiply() {
-        System.out.println("Берем 2 юнита и прибавляем 1, но не больше чем может быть в клетке юнитов данного типа | " + getClass().getSimpleName());
+
+    @Override
+    protected Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    @Override
+    public void run() {
+    }
+
+
+    @Override
+    public void reproduction() {
+
+    }
 }
 
