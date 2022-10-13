@@ -1,10 +1,7 @@
 package com.javarush.kolesnikova.entities.units;
 
 import com.javarush.kolesnikova.actions.Reproduction;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -16,21 +13,37 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Unit
         implements Runnable, Cloneable, Reproduction {
 
-    AtomicInteger numberUnit = new AtomicInteger(0);
+    final static AtomicInteger atomicInteger = new AtomicInteger(0);
+    final int numberUnit = atomicInteger.incrementAndGet();
+    String icon;
+    String name;
+    Double weight;
+    int speed;
+    int maxUnitsInCell;
+    Double kilogramOfFood;
 
 
-    private final String icon = getIcon();
-    private final String name =
-    private final Double weight;
-    private final int speed;
-    private final int maxUnitsInCell;
-    private final Double kilogramOfFood;
+
+    public Unit(String icon, String name, Double weight, int maxUnitsInCell) {
+        this.icon = icon;
+        this.name = name;
+        this.weight = weight;
+        this.maxUnitsInCell = maxUnitsInCell;
+    }
+
+    public Unit(String icon, String name, Double weight, int speed, int maxUnitsInCell, Double kilogramOfFood) {
+        this.icon = icon;
+        this.name = name;
+        this.weight = weight;
+        this.speed = speed;
+        this.maxUnitsInCell = maxUnitsInCell;
+        this.kilogramOfFood = kilogramOfFood;
+    }
 
 
     @Override
     public Object clone() {
-        numberUnit.getAndIncrement();
-        System.out.println("Клон ->"+ numberUnit.get());
+        System.out.println("Клон ->" + numberUnit);
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {

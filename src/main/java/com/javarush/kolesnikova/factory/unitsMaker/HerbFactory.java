@@ -9,7 +9,10 @@ public class HerbFactory  implements UnitFactory {
 
     @Override
     public  Herb makeUnit() {
-        return new Herb();
+        return new Herb("\\uD83C\\uDF39",
+                "Herb",
+                1.0,
+                200);
     }
 }
 

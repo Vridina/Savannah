@@ -6,6 +6,11 @@ public class RabbitFactory implements UnitFactory {
 
     @Override
     public  Rabbit makeUnit() {
-        return new Rabbit();
+        return new Rabbit("\\uD83D\\uDC07",
+                "Rabbit",
+                2.0,
+                2,
+                150,
+                0.45);
     }
 }

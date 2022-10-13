@@ -5,8 +5,16 @@ import com.javarush.kolesnikova.actions.Eating;
 import com.javarush.kolesnikova.actions.Reproduction;
 import com.javarush.kolesnikova.actions.Running;
 
+
+
 public abstract class Animals extends Unit
         implements Reproduction, Eating, Running {
+
+
+    public Animals(String icon, String name, Double weight, int speed, int maxUnitsInCell, Double kilogramOfFood) {
+        super(icon, name, weight, speed, maxUnitsInCell, kilogramOfFood);
+    }
+
     @Override
     public void eating(Unit unit) {
 
