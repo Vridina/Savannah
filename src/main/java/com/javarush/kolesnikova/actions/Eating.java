@@ -5,7 +5,7 @@ import com.javarush.kolesnikova.entities.units.Unit;
 
 
 public interface Eating {
-    void eating(Unit init);
+    void eating();
 
 //
 //    void eat () {

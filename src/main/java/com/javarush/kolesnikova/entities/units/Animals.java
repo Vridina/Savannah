@@ -27,12 +27,22 @@ public abstract class Animals extends Unit
 
 
     @Override
-    public void eating(Unit unit) {
+    public void run() {
+        super.run();
+        eating();
+//        running();
+        //кушать и бегать?
+    }
 
+    @Override
+    public void eating() {
+        System.out.println("_____________Объект пытается кого нить съесть:)))");
     }
 
     @Override
     public void running(Cell cell) {
+        System.out.println("Объект пытается убежать:)))");
+
         int newX = cell.getX() + ThreadLocalRandom.current().nextInt(0,speed);
         int newY = cell.getY() + ThreadLocalRandom.current().nextInt(0,speed);
         boolean isMove = true;

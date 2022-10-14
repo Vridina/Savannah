@@ -5,7 +5,6 @@ import com.javarush.kolesnikova.constants.UnitsName;
 import com.javarush.kolesnikova.controller.MainController;
 import com.javarush.kolesnikova.entities.units.Unit;
 
-import java.util.Arrays;
 
 import static com.javarush.kolesnikova.factory.UnitsFactory.getUnit;
 
@@ -19,7 +18,7 @@ public class Runner {
 
         Unit wolf = getUnit(UnitsName.valueOf("WOLF"));
         wolf.run();
-        wolf.toString();
+//        wolf.toString();
         Unit cloneWolf = (Unit) wolf.clone();
 
 
@@ -30,6 +29,9 @@ public class Runner {
 
 
        MainController.startApp();
+
+        System.out.println("________________________");
+
 
     }
 

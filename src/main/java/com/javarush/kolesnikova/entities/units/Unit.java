@@ -25,7 +25,6 @@ public abstract class Unit
 
     @Override
     public Object clone() {
-
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {
@@ -36,14 +35,15 @@ public abstract class Unit
     @Override
     public void run() {
         String s = getClass().getSimpleName();
-        System.out.println(s + " поток запустился");
-
+        System.out.println(s + " поток для объекта запустился");
+        reproduction();
     }
 
 
     @Override
-    public void reproduction(Unit unit) {
-
+    public void reproduction() {
+        String s = getClass().getSimpleName();
+        System.out.println(s + "Объект размножается размножением)))");
     }
 }
 

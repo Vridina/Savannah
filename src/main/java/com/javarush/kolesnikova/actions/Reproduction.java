@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public interface Reproduction {
-    void reproduction(Unit unit);
+    void reproduction();
     // вз€ть €чейку
     //узнать шаг???
     // проверить тип юнита
