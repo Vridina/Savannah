@@ -4,14 +4,14 @@ import com.javarush.kolesnikova.exceptions.GameException;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RandomNumbers extends Thread {
+class RandomNum extends Thread {
 
-    public static final int BOUND = 100;
+
     private int result;
 
-    public int randomNumbers() {
+    public int randomNumbers(int start, int finish) {
         try {
-            int result = ThreadLocalRandom.current().nextInt(BOUND);
+            int result = ThreadLocalRandom.current().nextInt(start,finish);
         } catch (GameException e) {
             System.out.println("Exception");
         }

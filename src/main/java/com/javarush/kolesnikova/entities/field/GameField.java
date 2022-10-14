@@ -10,8 +10,8 @@ public class GameField {
 
     private static final Cell[][] field = new Cell[row][col];
 
-//  создание пол€ с €чейками, каждой €чейке присваиваютс€ координаты x и y.
-    public static void createGame() {
+//  создание пол€ с €чейками, каждой €чейке присваиваютс€ координаты x и добавл€ютс€ в массив field.
+    public static Cell[][] createGameField() {
         for (int y = 0; y < row; y++) {
             for (int x = 0; x < col; x++) {
                 field[y][x] = new Cell(x, y);
@@ -19,7 +19,10 @@ public class GameField {
             }
             System.out.println("*");
         }
+        return field;
     }
+
+
 
 
 }

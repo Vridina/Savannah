@@ -1,6 +1,7 @@
 package com.javarush.kolesnikova.entities.units;
 
 import com.javarush.kolesnikova.actions.Reproduction;
+import com.javarush.kolesnikova.constants.PropertiesUnit;
 import lombok.*;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,21 +25,7 @@ public class Unit
 
 
 
-    public Unit(String icon, String name, Double weight, int maxUnitsInCell) {
-        this.icon = icon;
-        this.name = name;
-        this.weight = weight;
-        this.maxUnitsInCell = maxUnitsInCell;
-    }
 
-    public Unit(String icon, String name, Double weight, int speed, int maxUnitsInCell, Double kilogramOfFood) {
-        this.icon = icon;
-        this.name = name;
-        this.weight = weight;
-        this.speed = speed;
-        this.maxUnitsInCell = maxUnitsInCell;
-        this.kilogramOfFood = kilogramOfFood;
-    }
 
 
     @Override

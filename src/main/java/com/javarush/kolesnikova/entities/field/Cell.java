@@ -2,12 +2,14 @@ package com.javarush.kolesnikova.entities.field;
 
 
 import com.javarush.kolesnikova.entities.units.Unit;
-import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
-
+@Getter
+@Setter
 public class Cell {
 
     private final int x;
