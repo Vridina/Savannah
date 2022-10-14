@@ -21,6 +21,8 @@ public abstract class Animals extends Unit
         this.maxUnitsInCell = propertiesUnit.getMaxUnitsInCell();
         this.speed = propertiesUnit.getSpeed();
         this.kilogramOfFood = propertiesUnit.getKilogramOfFood();
+
+
     }
 
 
@@ -46,26 +48,5 @@ public abstract class Animals extends Unit
 
     }
 
-//    void eat(Herbivore herbivore) {
-//        String carnivoreName = getClass().getSimpleName();
-//        String herbivoreName = herbivore.getClass().getSimpleName();
-//
-//        PropertiesUnit propertiesCarnivore = unitsPropertiesMap.get(carnivoreName);
-//        Double carnivoreKilogramOfFood = propertiesCarnivore.getKilogramOfFood();
-//
-//
-//        PropertiesUnit propertiesHerbivore = unitsPropertiesMap.get(herbivoreName);
-//        Double herbivoreWeight = propertiesHerbivore.getWeight();
-//
-//        System.out.printf("%s съедает %s\n", carnivoreName, herbivoreName);
-//        System.out.printf("---Вес %s равен %f\n",  herbivoreName, herbivoreWeight);
-//        System.out.printf("---%s надо %f кг еды для насыщения\n",  carnivoreName, carnivoreKilogramOfFood);
-//
-//    }
-//
-//     void run1() {
-//        System.out.println(getClass().getSimpleName() + " бегает.");
-//
-//    }
 
 }

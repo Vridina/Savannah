@@ -17,8 +17,18 @@ public class UnitsFactory {
             RABBIT, new RabbitFactory(),
             HERB, new HerbFactory());
 
-    public static Unit getUnitMaker(String maker) {
-        UnitFactory unitFactory = unitsMakerMap.get(maker);
+    public static Unit getUnit(UnitsName name) {
+        UnitFactory unitFactory = unitsMakerMap.get(name);
+        System.out.println("создан " + name.name());
         return unitFactory.makeUnit();
+
     }
+
+
+//    public static Unit getUnit(String name) {
+//        UnitFactory unitFactory = unitsMakerMap.get(name.toUpperCase());
+//        System.out.println("создан " + name);
+//        return unitFactory.makeUnit();
+//
+//    }
 }

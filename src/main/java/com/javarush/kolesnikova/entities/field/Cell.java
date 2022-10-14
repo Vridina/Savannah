@@ -12,14 +12,17 @@ import java.util.Set;
 @Setter
 public class Cell {
 
-    private final int x;
-    private final int y;
+    private int x;
+    private int y;
 
+    private Set<Unit> unitsInCell;
 
-    private Set<Unit> unitsInCell = new HashSet<>();
-
-    public Cell(int x, int y) {
+    public Cell(int x, int y, Set<Unit> unitsInCell) {
         this.x = x;
         this.y = y;
+        this.unitsInCell = unitsInCell;
+        System.out.printf("Cоздана €чейка %d | %d в нее заселили: \n", x,y);
     }
+
+
 }

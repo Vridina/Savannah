@@ -12,6 +12,7 @@ import static com.javarush.kolesnikova.constants.UnitsName.*;
 @Getter
 public class PropertiesUnit {
 
+
     private final String icon;
     private final String name;
     private final Double weight;
@@ -23,10 +24,28 @@ public class PropertiesUnit {
     private static final Map<UnitsName, PropertiesUnit> unitsPropertiesMap = Map.of(
             WOLF, new PropertiesUnit("", "Волк", 50.0, 3, 30, 8.0),
             RABBIT, new PropertiesUnit("", "Заяц", 20., 2, 150, 0.45),
-            HERB, new PropertiesUnit("", "Заяц", 20., 2, 150, 0.45));
+            HERB, new PropertiesUnit("", "Трава", 20., 2, 150, 0.45));
+
+
+    public static PropertiesUnit unitsProperties(UnitsName unitsName) {
+        return unitsPropertiesMap.get(unitsName);
+    }
 
 
     private static final int[][] chanceToHaveDinner = new int[UnitsName.values().length][UnitsName.values().length];
 
 
+    public static int[][] chanceToHaveDinner() {
+
+        chanceToHaveDinner[WOLF.ordinal()][RABBIT.ordinal()] = 60;
+        chanceToHaveDinner[WOLF.ordinal()][HERB.ordinal()] = 0;
+
+        chanceToHaveDinner[RABBIT.ordinal()][RABBIT.ordinal()] = 60;
+        chanceToHaveDinner[RABBIT.ordinal()][HERB.ordinal()] = 100;
+
+        return chanceToHaveDinner;
+    }
 }
+
+
+

@@ -4,15 +4,15 @@ package com.javarush.kolesnikova.factory.unitsFactory;
 
 import com.javarush.kolesnikova.entities.units.plants.Herb;
 
+import static com.javarush.kolesnikova.constants.PropertiesUnit.unitsProperties;
+import static com.javarush.kolesnikova.constants.UnitsName.HERB;
+
 public class HerbFactory  implements UnitFactory {
 
 
     @Override
     public  Herb makeUnit() {
-        return new Herb("\\uD83C\\uDF39",
-                "Herb",
-                1.0,
-                200);
+        return new Herb(unitsProperties(HERB));
     }
 }
 

@@ -1,10 +1,13 @@
 package com.javarush.kolesnikova;
 
 
-import com.javarush.kolesnikova.entities.field.GameField;
+import com.javarush.kolesnikova.constants.UnitsName;
+import com.javarush.kolesnikova.controller.MainController;
 import com.javarush.kolesnikova.entities.units.Unit;
 
-import static com.javarush.kolesnikova.factory.UnitsFactory.getUnitMaker;
+import java.util.Arrays;
+
+import static com.javarush.kolesnikova.factory.UnitsFactory.getUnit;
 
 
 public class Runner {
@@ -14,7 +17,7 @@ public class Runner {
 
 
 
-        Unit wolf = getUnitMaker("Wolf");
+        Unit wolf = getUnit(UnitsName.valueOf("WOLF"));
         wolf.run();
         wolf.toString();
         Unit cloneWolf = (Unit) wolf.clone();
@@ -22,7 +25,11 @@ public class Runner {
 
         System.out.println(wolf.getNumberUnit());
         System.out.println(cloneWolf.getNumberUnit());
+        System.out.println("количесво енамов - "+((UnitsName.values()).length));
+        System.out.println("________________________");
 
+
+       MainController.startApp();
 
     }
 

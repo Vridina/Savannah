@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Setter
 @Getter
 @ToString
-public class Unit
+public abstract class Unit
         implements Runnable, Cloneable, Reproduction {
 
     final static AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -23,14 +23,9 @@ public class Unit
     int maxUnitsInCell;
     Double kilogramOfFood;
 
-
-
-
-
-
     @Override
     public Object clone() {
-        System.out.println("Клон ->" + numberUnit);
+
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {
