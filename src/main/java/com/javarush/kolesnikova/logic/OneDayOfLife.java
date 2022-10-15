@@ -15,23 +15,25 @@ public class OneDayOfLife {
     public static void start() {
         System.out.println("\n \nЗапускаем 1 день в мире животных:");
         Cell[][] field = getField();
-        for (int y = 0; y < getRowY(); y++) {
-            for (int x = 0; x < getColX(); x++) {
-                Cell cell = field[y][x];
-                HashSet<Unit> unitsInCell = cell.getUnitsInCell();
-                if (!unitsInCell.isEmpty()) {
-                    Iterator<Unit> iterator = unitsInCell.iterator();
-                    while (iterator.hasNext()){
-                        Unit unit = iterator.next();
-                        unit.reproduction();
+        System.out.println(field[0][0]);
 
+//        for (int y = 0; y < getRowY(); y++) {
+//            for (int x = 0; x < getColX(); x++) {
+//                Cell cell = field[y][x];
+//                HashSet<Unit> unitsInCell = cell.getUnitsInCell();
+//                if (!unitsInCell.isEmpty()) {
+//                    Iterator<Unit> iterator = unitsInCell.iterator();
+//                    while (iterator.hasNext()){
+//                        Unit unit = iterator.next();
+//                        unit.reproduction();
 
-                    }
-                } else throw new GameException();
-
-            }
-
-        }
+//
+//                    }
+//                } else throw new GameException();
+//
+//            }
+//
+//        }
 
 
     }

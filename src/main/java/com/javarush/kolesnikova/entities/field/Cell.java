@@ -4,11 +4,13 @@ package com.javarush.kolesnikova.entities.field;
 import com.javarush.kolesnikova.entities.units.Unit;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.HashSet;
 
 @Getter
 @Setter
+@ToString
 public class Cell {
 
     private int x;

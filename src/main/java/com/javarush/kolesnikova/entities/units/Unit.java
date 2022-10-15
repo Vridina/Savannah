@@ -26,7 +26,7 @@ public abstract class Unit
     Double kilogramOfFood;
 
 
-    public int getId() {
+    private int getIncrementId() {
         return atomicInteger.incrementAndGet();
     }
 
@@ -34,7 +34,7 @@ public abstract class Unit
     public Unit clone() {
         try {
             Unit clone = (Unit) super.clone();
-            clone.setId(clone.getId());
+            clone.setId(clone.getIncrementId());
             return clone;
 
         } catch (CloneNotSupportedException e) {
@@ -53,7 +53,7 @@ public abstract class Unit
     @Override
     public void reproduction() {
         String s = getClass().getSimpleName();
-        System.out.println(s + "Объект размножается размножением)))");
+        System.out.printf("\nОбъект %s %d размножается размножением.", s,getId());
     }
 }
 

@@ -10,7 +10,6 @@ public abstract class Plants extends Unit
 
 
     public Plants(PropertiesUnit propertiesUnit) {
-
         this.icon = propertiesUnit.getIcon();
         this.name = propertiesUnit.getName();
         this.weight = propertiesUnit.getWeight();

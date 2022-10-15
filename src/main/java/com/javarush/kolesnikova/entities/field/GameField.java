@@ -1,6 +1,8 @@
 package com.javarush.kolesnikova.entities.field;
 
+import lombok.ToString;
 
+@ToString
 public class GameField {
 
     private static final int rowY = 2;

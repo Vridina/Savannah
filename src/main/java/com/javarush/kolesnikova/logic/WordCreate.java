@@ -38,8 +38,9 @@ public class WordCreate {
                     for (int n = 0; n < numRandom; n++) {
                         unitsInCell.add(unit.clone());
                     }
-                    System.out.println(unitsInCell);
+
                 }
+                System.out.println("\n"+unitsInCell);
             }
             System.out.println("\n \n Новая строка ______________");
 
