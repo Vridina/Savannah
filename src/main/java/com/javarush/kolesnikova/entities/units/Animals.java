@@ -31,9 +31,6 @@ public abstract class Animals extends Unit
     @Override
     public void run() {
         super.run();
-        eating();
-//        running();
-        //кушать и бегать?
     }
 
     @Override

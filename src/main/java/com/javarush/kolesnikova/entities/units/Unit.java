@@ -46,14 +46,12 @@ public abstract class Unit
     public void run() {
         String s = getClass().getSimpleName();
         System.out.println(s + " поток для объекта запустился");
-        reproduction();
-    }
 
+    }
 
     @Override
     public void reproduction() {
-        String s = getClass().getSimpleName();
-        System.out.printf("\nОбъект %s %d размножается размножением.", s,getId());
+
     }
 }
 

@@ -8,4 +8,8 @@ public class Wolf extends Carnivore  {
     public Wolf(PropertiesUnit propertiesUnit) {
         super(propertiesUnit);
     }
+
+
+
+
 }
