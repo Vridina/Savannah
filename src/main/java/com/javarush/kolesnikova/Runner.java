@@ -19,11 +19,10 @@ public class Runner {
         Unit wolf = getUnit(UnitsName.valueOf("WOLF"));
         wolf.run();
 //        wolf.toString();
-        Unit cloneWolf = (Unit) wolf.clone();
+        Unit cloneWolf = wolf.clone();
 
 
-        System.out.println(wolf.getNumberUnit());
-        System.out.println(cloneWolf.getNumberUnit());
+        System.out.println(wolf.getId());
         System.out.println("количесво енамов - "+((UnitsName.values()).length));
         System.out.println("________________________");
 

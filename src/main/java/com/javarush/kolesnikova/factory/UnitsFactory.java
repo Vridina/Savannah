@@ -19,7 +19,7 @@ public class UnitsFactory {
 
     public static Unit getUnit(UnitsName name) {
         UnitFactory unitFactory = unitsMakerMap.get(name);
-        System.out.println("создан " + name.name());
+        System.out.println("рожден " + name.name());
         return unitFactory.makeUnit();
 
     }

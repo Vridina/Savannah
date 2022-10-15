@@ -14,6 +14,7 @@ public abstract class Animals extends Unit
         implements Reproduction, Eating, Running {
 
 
+
     public Animals(PropertiesUnit propertiesUnit) {
         this.icon = propertiesUnit.getIcon();
         this.name = propertiesUnit.getName();
@@ -21,6 +22,7 @@ public abstract class Animals extends Unit
         this.maxUnitsInCell = propertiesUnit.getMaxUnitsInCell();
         this.speed = propertiesUnit.getSpeed();
         this.kilogramOfFood = propertiesUnit.getKilogramOfFood();
+        this.id = getId();
 
 
     }

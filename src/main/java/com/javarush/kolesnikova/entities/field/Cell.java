@@ -21,7 +21,7 @@ public class Cell {
         this.x = x;
         this.y = y;
         this.unitsInCell = unitsInCell;
-        System.out.printf("Cоздана €чейка %d | %d в нее заселили: \n", x,y);
+        System.out.printf("\nCоздана €чейка %d | %d в нее заселили: ", x,y);
     }
 
 

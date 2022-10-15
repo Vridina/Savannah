@@ -1,7 +1,7 @@
 package com.javarush.kolesnikova.entities.units;
 
 import com.javarush.kolesnikova.actions.Reproduction;
-import com.javarush.kolesnikova.constants.PropertiesUnit;
+import com.javarush.kolesnikova.exceptions.GameException;
 import lombok.*;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -14,8 +14,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class Unit
         implements Runnable, Cloneable, Reproduction {
 
-    final static AtomicInteger atomicInteger = new AtomicInteger(0);
-    final int numberUnit = atomicInteger.incrementAndGet();
+    private final static AtomicInteger atomicInteger = new AtomicInteger(0);
+
+    int id;
+
     String icon;
     String name;
     Double weight;
@@ -23,12 +25,20 @@ public abstract class Unit
     int maxUnitsInCell;
     Double kilogramOfFood;
 
+
+    public int getId() {
+        return atomicInteger.incrementAndGet();
+    }
+
     @Override
-    public Object clone() {
+    public Unit clone() {
         try {
-            return super.clone();
+            Unit clone = (Unit) super.clone();
+            clone.setId(clone.getId());
+            return clone;
+
         } catch (CloneNotSupportedException e) {
-            throw new RuntimeException(e);
+            throw new GameException(e);
         }
     }
 

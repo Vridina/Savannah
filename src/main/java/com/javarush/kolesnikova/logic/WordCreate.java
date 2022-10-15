@@ -33,13 +33,12 @@ public class WordCreate {
                 for (UnitsName unitsName : unitsNames) {
                     Unit unit = getUnit(unitsName);
                     int maxUnitsInCell = unit.getMaxUnitsInCell();
-                    int num = ThreadLocalRandom.current().nextInt(0, maxUnitsInCell);
-                    System.out.printf("макс число в ячейке %d , создан  %d %s \n", maxUnitsInCell, num, unit.getName());
-                    for (int n = 0; n < num; n++) {
-                        Unit clone = (Unit) unit.clone();
-                        unitsInCell.add(clone);
-
+                    int numRandom = ThreadLocalRandom.current().nextInt(0, maxUnitsInCell);
+                    System.out.printf("Макс число животных данного вида в ячейке %d. Создано %d %s \n", maxUnitsInCell, numRandom, unit.getName());
+                    for (int n = 0; n < numRandom; n++) {
+                        unitsInCell.add(unit.clone());
                     }
+                    System.out.println(unitsInCell);
                 }
             }
             System.out.println("\n \n Новая строка ______________");
