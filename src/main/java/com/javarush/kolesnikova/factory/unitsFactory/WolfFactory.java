@@ -1,10 +1,10 @@
 package com.javarush.kolesnikova.factory.unitsFactory;
 
-import com.javarush.kolesnikova.constants.PropertiesUnit;
+import static com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName.*;
 import com.javarush.kolesnikova.entities.units.carnivorous.Wolf;
 
 import static com.javarush.kolesnikova.constants.PropertiesUnit.unitsProperties;
-import static com.javarush.kolesnikova.constants.UnitsName.WOLF;
+
 
 public class WolfFactory implements UnitFactory {
 

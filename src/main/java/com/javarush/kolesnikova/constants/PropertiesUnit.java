@@ -3,9 +3,10 @@ package com.javarush.kolesnikova.constants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.EnumSet;
 import java.util.Map;
 
-import static com.javarush.kolesnikova.constants.UnitsName.*;
+import static com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName.*;
 
 
 @AllArgsConstructor
@@ -20,8 +21,19 @@ public class PropertiesUnit {
     private final int maxUnitsInCell;
     private final Double kilogramOfFood;
 
-    // сделать енамом и заюзать в фабрике
-    private static final Map<UnitsName, PropertiesUnit> unitsPropertiesMap = Map.of(
+
+
+
+    public enum UnitsName {WOLF, RABBIT, HERB}
+
+    public static  EnumSet<UnitsName> allUnits() {
+        return EnumSet.allOf(UnitsName.class);
+    }
+
+
+
+
+  private static final Map<UnitsName, PropertiesUnit> unitsPropertiesMap = Map.of(
             WOLF, new PropertiesUnit("", "Волк", 50.0, 3, 3, 8.0),
             RABBIT, new PropertiesUnit("", "Заяц", 20., 2, 15, 0.45),
             HERB, new PropertiesUnit("", "Трава", 20., 2, 15, 0.45));

@@ -1,12 +1,15 @@
 package com.javarush.kolesnikova.logic;
 
-import com.javarush.kolesnikova.constants.UnitsName;
+
+import com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName;
 import com.javarush.kolesnikova.entities.field.Cell;
 import com.javarush.kolesnikova.entities.units.Unit;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static com.javarush.kolesnikova.constants.PropertiesUnit.allUnits;
 import static com.javarush.kolesnikova.entities.field.GameField.*;
 import static com.javarush.kolesnikova.factory.UnitsFactory.getUnit;
 
@@ -29,8 +32,7 @@ public class WordCreate {
                 Cell cell = new Cell(x, y, unitsInCell);
                 Cell[][] field = getField();
                 field[y][x] = cell;
-                UnitsName[] unitsNames = UnitsName.values();
-                for (UnitsName unitsName : unitsNames) {
+                for (UnitsName unitsName : allUnits()) {
                     Unit unit = getUnit(unitsName);
                     int maxUnitsInCell = unit.getMaxUnitsInCell();
                     int numRandom = ThreadLocalRandom.current().nextInt(0, maxUnitsInCell);
@@ -38,9 +40,8 @@ public class WordCreate {
                     for (int n = 0; n < numRandom; n++) {
                         unitsInCell.add(unit.clone());
                     }
-
                 }
-                System.out.println("\n"+unitsInCell);
+                System.out.println("\n" + unitsInCell);
             }
             System.out.println("\n \n Новая строка ______________");
 
