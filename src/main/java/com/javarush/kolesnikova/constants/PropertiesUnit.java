@@ -22,18 +22,16 @@ public class PropertiesUnit {
     private final Double kilogramOfFood;
 
 
-
-
     public enum UnitsName {WOLF, RABBIT, HERB}
 
-    public static  EnumSet<UnitsName> allUnits() {
+    public static EnumSet<UnitsName> allUnits() {
         return EnumSet.allOf(UnitsName.class);
     }
 
 
 
 
-  private static final Map<UnitsName, PropertiesUnit> unitsPropertiesMap = Map.of(
+    private static final Map<UnitsName, PropertiesUnit> unitsPropertiesMap = Map.of(
             WOLF, new PropertiesUnit("", "Волк", 50.0, 3, 3, 8.0),
             RABBIT, new PropertiesUnit("", "Заяц", 20., 2, 15, 0.45),
             HERB, new PropertiesUnit("", "Трава", 20., 2, 15, 0.45));

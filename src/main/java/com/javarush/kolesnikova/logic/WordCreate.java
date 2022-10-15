@@ -5,13 +5,12 @@ import com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName;
 import com.javarush.kolesnikova.entities.field.Cell;
 import com.javarush.kolesnikova.entities.units.Unit;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.*;
 
 import static com.javarush.kolesnikova.constants.PropertiesUnit.allUnits;
 import static com.javarush.kolesnikova.entities.field.GameField.*;
 import static com.javarush.kolesnikova.factory.UnitsFactory.getUnit;
+import static com.javarush.kolesnikova.utils.Utils.getRandom;
 
 
 public class WordCreate {
@@ -28,25 +27,29 @@ public class WordCreate {
         System.out.println("Создаем мир и населяем животными: ");
         for (int y = 0; y < getRowY(); y++) {
             for (int x = 0; x < getColX(); x++) {
-                HashSet<Unit> unitsInCell = new HashSet<>();
+                HashMap<UnitsName, Set<Unit>> unitsInCell = new HashMap<>();
+
                 Cell cell = new Cell(x, y, unitsInCell);
                 Cell[][] field = getField();
                 field[y][x] = cell;
                 for (UnitsName unitsName : allUnits()) {
                     Unit unit = getUnit(unitsName);
                     int maxUnitsInCell = unit.getMaxUnitsInCell();
-                    int numRandom = ThreadLocalRandom.current().nextInt(0, maxUnitsInCell);
+                    int numRandom = getRandom(maxUnitsInCell);
                     System.out.printf("Макс число животных данного вида в ячейке %d. Создано %d %s \n", maxUnitsInCell, numRandom, unit.getName());
+                    Set<Unit> unitsOneTypeSet = new HashSet<>();
                     for (int n = 0; n < numRandom; n++) {
-                        unitsInCell.add(unit.clone());
+                        unitsOneTypeSet.add(unit.clone());
                     }
+                    unitsInCell.put(unitsName, unitsOneTypeSet);
                 }
                 System.out.println("\n" + unitsInCell);
+                System.out.println(unitsInCell.get(UnitsName.WOLF).size());
             }
             System.out.println("\n \n Новая строка ______________");
-
-
         }
 
     }
+
+
 }
