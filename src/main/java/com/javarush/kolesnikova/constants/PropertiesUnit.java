@@ -33,8 +33,8 @@ public class PropertiesUnit {
 
     private static final Map<UnitsName, PropertiesUnit> unitsPropertiesMap = Map.of(
             WOLF, new PropertiesUnit("", "Волк", 50.0, 3, 3, 8.0),
-            RABBIT, new PropertiesUnit("", "Заяц", 20., 2, 15, 0.45),
-            HERB, new PropertiesUnit("", "Трава", 20., 2, 15, 0.45));
+            RABBIT, new PropertiesUnit("", "Заяц", 20., 2, 5, 0.45),
+            HERB, new PropertiesUnit("", "Трава", 20., 2, 5, 0.45));
 
 
     public static PropertiesUnit unitsProperties(UnitsName unitsName) {

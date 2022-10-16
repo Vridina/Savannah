@@ -5,6 +5,7 @@ import com.javarush.kolesnikova.entities.field.Cell;
 import com.javarush.kolesnikova.entities.field.GameField;
 import com.javarush.kolesnikova.entities.units.Unit;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -12,6 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName.HERB;
 import static com.javarush.kolesnikova.entities.field.GameField.*;
 import static com.javarush.kolesnikova.factory.UnitsFactory.getUnit;
+
 
 
 public class Actions {
@@ -33,7 +35,7 @@ public class Actions {
             Unit unitInstance = getUnit(unitsName);
             int maxUnitsInCell = unitInstance.getMaxUnitsInCell();
             Set<Unit> units = cell.getSetUnitsInCell(unitsName);
-            int numberOfOneTypeOfUnits = units.size();
+            int numberOfOneTypeOfUnits = units.size(); // узнаю сколько было юнитов типа unitsName на стартеб при этом мнее  ее надо сумировать по каждому типу
             if (!unitsName.equals(HERB)) {
                 int numberOfNewUnitsMax = numberOfOneTypeOfUnits / 2;
                 int numberOfNewUnitsResult;
@@ -48,7 +50,7 @@ public class Actions {
                 System.out.printf("¬ €чейке %d | %d живет %d  %s. Ѕыло рождено %d малышей. ¬сего стало __ %d\n",
                         cell.getX(), cell.getY(), numberOfOneTypeOfUnits, unitsName, numberOfNewUnitsResult, cell.getUnitsInCell().get(unitsName).size());
             } else {
-                int numberOfNewUnitsResult = maxUnitsInCell - numberOfOneTypeOfUnits;
+                int numberOfNewUnitsResult = maxUnitsInCell - numberOfOneTypeOfUnits; // узнаю сколько всего их народилось
                 for (int i = 0; i < numberOfNewUnitsResult; i++) {
                     units.add(unitInstance.clone());
                 }
@@ -64,11 +66,21 @@ public class Actions {
     private static void running(Cell cell) {
         for (UnitsName unitsName : cell.getUnitsInCell().keySet()) {
             Set<Unit> units = cell.getSetUnitsInCell(unitsName);
+            HashSet<Unit> unitsCopy = new HashSet<>(units);
+
             if (!unitsName.equals(HERB)) {
-                for (Unit nextUnit : units) {
-                               int maxUnitsInCell = nextUnit.getMaxUnitsInCell();
-                    int newX = cell.getX() + ThreadLocalRandom.current().nextInt(0, nextUnit.getSpeed() - 1);
-                    int newY = cell.getY() + ThreadLocalRandom.current().nextInt(0, nextUnit.getSpeed() - 1);
+//                for (Unit nextUnit : units)
+                Iterator<Unit> unitIterator = unitsCopy.iterator();
+                while (unitIterator.hasNext()) {
+                    Unit nextUnit = unitIterator.next();
+                    int maxUnitsInCell = nextUnit.getMaxUnitsInCell();
+
+                    int[] one = new int[]{-1, 1};
+                    int takeOne = ThreadLocalRandom.current().nextInt(0, 1);
+
+
+                    int newX = cell.getX() + (ThreadLocalRandom.current().nextInt(0, nextUnit.getSpeed()) * one[takeOne]);
+                    int newY = cell.getY() + (ThreadLocalRandom.current().nextInt(0, nextUnit.getSpeed()) * one[takeOne]);
 
                     if (newX < 0) {
                         newX *= -1;
@@ -81,29 +93,31 @@ public class Actions {
 
                     boolean isMove = true;
                     if (newX >= GameField.getColX() || newY >= GameField.getRowY() || newX < 0 || newY < 0) {
-             
-                        System.out.printf("%s ќбъект пытаетс€ убежать из €чейки %d | %d, в новую €чейку %d | %d ---> ",
-                                nextUnit, cell.getX(), cell.getY(), newX, newY);
+
+                        System.out.printf("%s пытаетс€ убежать из €чейки %d | %d, в новую €чейку %d | %d ---> ",
+                                units.iterator().next().getName(), cell.getX(), cell.getY(), newX, newY);
                         System.out.println("ѕровалено - выход за пределы пол€");
                     } else if (newX == cell.getX() && newY == cell.getY()) {
 
-                        System.out.printf("%s ќбъект пытаетс€ убежать из €чейки %d | %d, в новую €чейку %d | %d ---> ",
-                                nextUnit, cell.getX(), cell.getY(), newX, newY);
+                        System.out.printf("%s пытаетс€ убежать из €чейки %d | %d, в новую €чейку %d | %d ---> ",
+                                units.iterator().next().getName(), cell.getX(), cell.getY(), newX, newY);
                         System.out.println("ѕровалено - та же €чейка");
                     } else {
                         Cell cellTarget = getField()[newY][newX];
-                        int numberOfOneTypeOfUnitsInNewCell = cellTarget.getSetUnitsInCell(unitsName).size();
+                        Set<Unit> setUnitsInCellTarget = cellTarget.getSetUnitsInCell(unitsName);
+                        int numberOfOneTypeOfUnitsInNewCell = setUnitsInCellTarget.size();
                         if (numberOfOneTypeOfUnitsInNewCell >= maxUnitsInCell) {
-                            System.out.printf("%s ќбъект пытаетс€ убежать из €чейки %d | %d, в новую €чейку %d | %d ---> ",
-                                    nextUnit, cell.getX(), cell.getY(), newX, newY);
+                            System.out.printf("%s пытаетс€ убежать из €чейки %d | %d, в новую €чейку %d | %d ---> ",
+                                    units.iterator().next().getName(), cell.getX(), cell.getY(), newX, newY);
                             System.out.println("ѕровалено - €чейка перенаселена");
                             isMove = false;
                         }
                         if (isMove) {
-                            System.out.printf("ќбъект пытаетс€ убежать из €чейки %d | %d, в новую €чейку %d | %d ---> ",
-                                    cell.getX(), cell.getY(), newX, newY);
+                            System.out.printf("%s пытаетс€ убежать из €чейки %d | %d, в новую €чейку %d | %d ---> ",
+                                    units.iterator().next().getName(), cell.getX(), cell.getY(), newX, newY);
                             System.out.println("ѕеремещение успешно ~~~~~");
-
+                            setUnitsInCellTarget.add(nextUnit.clone());
+                            units.remove(nextUnit);
                         }
 
                     }
@@ -111,7 +125,7 @@ public class Actions {
 
 
             } else {
-                System.out.println("трава не бегает");
+                System.out.println("“рава не бегает, как бэ)");
             }
 
 
