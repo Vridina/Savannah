@@ -5,7 +5,6 @@ import com.javarush.kolesnikova.entities.field.Cell;
 import com.javarush.kolesnikova.entities.units.Unit;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 import static com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName.HERB;
@@ -24,7 +23,7 @@ public class Actions{
                 for (PropertiesUnit.UnitsName unitsName : unitsInCell.keySet()) {
                     Unit unitInstance = getUnit(unitsName);
                     int maxUnitsInCell = unitInstance.getMaxUnitsInCell();
-                    Set<Unit> units = unitsInCell.get(unitsName);
+                    Set<Unit> units = cell.getSetUnitsInCell(unitsName);
                     int numberOfOneTypeOfUnits = units.size();
                     if (!unitsName.equals(HERB)) {
                         int numberOfNewUnitsMax = numberOfOneTypeOfUnits / 2;
@@ -34,20 +33,20 @@ public class Actions{
                         } else {
                             numberOfNewUnitsResult = maxUnitsInCell - numberOfOneTypeOfUnits;
                         }
-                        Set<Unit> unitsOneTypeSet = new HashSet<>();
                         for (int i = 0; i < numberOfNewUnitsResult; i++) {
-                            unitsOneTypeSet.add(unitInstance.clone());
+                            units.add(unitInstance.clone());
                         }
-                        unitsInCell.put(unitsName, unitsOneTypeSet);
-                        System.out.printf("В ячейке %d | %d живет %d  %s. Было рождено %d малышей. \n", cell.getX(), cell.getY(), numberOfOneTypeOfUnits, unitsName, numberOfNewUnitsResult);
+                        System.out.printf("В ячейке %d | %d живет %d  %s. Было рождено %d малышей. Всего стало __ %d\n",
+                                cell.getX(), cell.getY(), numberOfOneTypeOfUnits, unitsName, numberOfNewUnitsResult,   unitsInCell.get(unitsName).size());
                     } else {
                         int numberOfNewUnitsResult = maxUnitsInCell - numberOfOneTypeOfUnits;
-                        Set<Unit> unitsOneTypeSet = new HashSet<>();
                         for (int i = 0; i < numberOfNewUnitsResult; i++) {
-                            unitsOneTypeSet.add(unitInstance.clone());
+                            units.add(unitInstance.clone());
                         }
-                        unitsInCell.put(unitsName, unitsOneTypeSet);
-                        System.out.printf("В ячейке %d | %d растет %d %s. Выросло %d травинок. \n", cell.getX(), cell.getY(), numberOfOneTypeOfUnits, unitsName, numberOfNewUnitsResult);
+                        System.out.printf("В ячейке %d | %d растет %d %s. Выросло %d травинок. Всего стало __ %d.\n",
+                                cell.getX(), cell.getY(), numberOfOneTypeOfUnits, unitsName, numberOfNewUnitsResult,
+                                unitsInCell.get(unitsName).size());
+
                     }
                 }
             }

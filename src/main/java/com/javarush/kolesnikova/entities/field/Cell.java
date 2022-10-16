@@ -26,4 +26,14 @@ public class Cell {
         this.unitsInCell = unitsInCell;
         System.out.printf("\nCоздана €чейка %d | %d в нее заселили: ", x, y);
     }
+
+    public Set<Unit> getSetUnitsInCell(UnitsName unitsName) {
+        return unitsInCell.get(unitsName);
+    }
+
+
+
+
+
+
 }
