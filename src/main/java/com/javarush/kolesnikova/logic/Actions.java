@@ -1,56 +1,123 @@
 package com.javarush.kolesnikova.logic;
 
-import com.javarush.kolesnikova.constants.PropertiesUnit;
+import com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName;
 import com.javarush.kolesnikova.entities.field.Cell;
+import com.javarush.kolesnikova.entities.field.GameField;
 import com.javarush.kolesnikova.entities.units.Unit;
 
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName.HERB;
 import static com.javarush.kolesnikova.entities.field.GameField.*;
 import static com.javarush.kolesnikova.factory.UnitsFactory.getUnit;
 
-public class Actions{
+
+public class Actions {
 
 
-    public static void reproduction() {
+    public static void actions() {
         Cell[][] field = getField();
         for (int y = 0; y < getRowY(); y++) {
             for (int x = 0; x < getColX(); x++) {
                 Cell cell = field[y][x];
-                HashMap<PropertiesUnit.UnitsName, Set<Unit>> unitsInCell = cell.getUnitsInCell();
-                for (PropertiesUnit.UnitsName unitsName : unitsInCell.keySet()) {
-                    Unit unitInstance = getUnit(unitsName);
-                    int maxUnitsInCell = unitInstance.getMaxUnitsInCell();
-                    Set<Unit> units = cell.getSetUnitsInCell(unitsName);
-                    int numberOfOneTypeOfUnits = units.size();
-                    if (!unitsName.equals(HERB)) {
-                        int numberOfNewUnitsMax = numberOfOneTypeOfUnits / 2;
-                        int numberOfNewUnitsResult;
-                        if (maxUnitsInCell >= (numberOfNewUnitsMax + numberOfOneTypeOfUnits)) {
-                            numberOfNewUnitsResult = numberOfNewUnitsMax;
-                        } else {
-                            numberOfNewUnitsResult = maxUnitsInCell - numberOfOneTypeOfUnits;
-                        }
-                        for (int i = 0; i < numberOfNewUnitsResult; i++) {
-                            units.add(unitInstance.clone());
-                        }
-                        System.out.printf("В ячейке %d | %d живет %d  %s. Было рождено %d малышей. Всего стало __ %d\n",
-                                cell.getX(), cell.getY(), numberOfOneTypeOfUnits, unitsName, numberOfNewUnitsResult,   unitsInCell.get(unitsName).size());
+                multiply(cell);
+                running(cell);
+            }
+        }
+    }
+
+    private static void multiply(Cell cell) {
+        for (UnitsName unitsName : cell.getUnitsInCell().keySet()) {
+            Unit unitInstance = getUnit(unitsName);
+            int maxUnitsInCell = unitInstance.getMaxUnitsInCell();
+            Set<Unit> units = cell.getSetUnitsInCell(unitsName);
+            int numberOfOneTypeOfUnits = units.size();
+            if (!unitsName.equals(HERB)) {
+                int numberOfNewUnitsMax = numberOfOneTypeOfUnits / 2;
+                int numberOfNewUnitsResult;
+                if (maxUnitsInCell >= (numberOfNewUnitsMax + numberOfOneTypeOfUnits)) {
+                    numberOfNewUnitsResult = numberOfNewUnitsMax;
+                } else {
+                    numberOfNewUnitsResult = maxUnitsInCell - numberOfOneTypeOfUnits;
+                }
+                for (int i = 0; i < numberOfNewUnitsResult; i++) {
+                    units.add(unitInstance.clone());
+                }
+                System.out.printf("В ячейке %d | %d живет %d  %s. Было рождено %d малышей. Всего стало __ %d\n",
+                        cell.getX(), cell.getY(), numberOfOneTypeOfUnits, unitsName, numberOfNewUnitsResult, cell.getUnitsInCell().get(unitsName).size());
+            } else {
+                int numberOfNewUnitsResult = maxUnitsInCell - numberOfOneTypeOfUnits;
+                for (int i = 0; i < numberOfNewUnitsResult; i++) {
+                    units.add(unitInstance.clone());
+                }
+                System.out.printf("В ячейке %d | %d растет %d %s. Выросло %d травинок. Всего стало __ %d.\n",
+                        cell.getX(), cell.getY(), numberOfOneTypeOfUnits, unitsName, numberOfNewUnitsResult,
+                        cell.getUnitsInCell().get(unitsName).size());
+
+            }
+        }
+    }
+
+
+    private static void running(Cell cell) {
+        for (UnitsName unitsName : cell.getUnitsInCell().keySet()) {
+            Set<Unit> units = cell.getSetUnitsInCell(unitsName);
+            if (!unitsName.equals(HERB)) {
+                for (Unit nextUnit : units) {
+                               int maxUnitsInCell = nextUnit.getMaxUnitsInCell();
+                    int newX = cell.getX() + ThreadLocalRandom.current().nextInt(0, nextUnit.getSpeed() - 1);
+                    int newY = cell.getY() + ThreadLocalRandom.current().nextInt(0, nextUnit.getSpeed() - 1);
+
+                    if (newX < 0) {
+                        newX *= -1;
+                    }
+                    if (newY < 0) {
+                        newY *= -1;
+                    }
+//                System.out.printf("Объект пытается убежать из ячейки %d | %d, в новую ячейку %d | %d\n",
+//                        cell.getX(), cell.getY(), newX, newY);
+
+                    boolean isMove = true;
+                    if (newX >= GameField.getColX() || newY >= GameField.getRowY() || newX < 0 || newY < 0) {
+             
+                        System.out.printf("%s Объект пытается убежать из ячейки %d | %d, в новую ячейку %d | %d ---> ",
+                                nextUnit, cell.getX(), cell.getY(), newX, newY);
+                        System.out.println("Провалено - выход за пределы поля");
+                    } else if (newX == cell.getX() && newY == cell.getY()) {
+
+                        System.out.printf("%s Объект пытается убежать из ячейки %d | %d, в новую ячейку %d | %d ---> ",
+                                nextUnit, cell.getX(), cell.getY(), newX, newY);
+                        System.out.println("Провалено - та же ячейка");
                     } else {
-                        int numberOfNewUnitsResult = maxUnitsInCell - numberOfOneTypeOfUnits;
-                        for (int i = 0; i < numberOfNewUnitsResult; i++) {
-                            units.add(unitInstance.clone());
+                        Cell cellTarget = getField()[newY][newX];
+                        int numberOfOneTypeOfUnitsInNewCell = cellTarget.getSetUnitsInCell(unitsName).size();
+                        if (numberOfOneTypeOfUnitsInNewCell >= maxUnitsInCell) {
+                            System.out.printf("%s Объект пытается убежать из ячейки %d | %d, в новую ячейку %d | %d ---> ",
+                                    nextUnit, cell.getX(), cell.getY(), newX, newY);
+                            System.out.println("Провалено - ячейка перенаселена");
+                            isMove = false;
                         }
-                        System.out.printf("В ячейке %d | %d растет %d %s. Выросло %d травинок. Всего стало __ %d.\n",
-                                cell.getX(), cell.getY(), numberOfOneTypeOfUnits, unitsName, numberOfNewUnitsResult,
-                                unitsInCell.get(unitsName).size());
+                        if (isMove) {
+                            System.out.printf("Объект пытается убежать из ячейки %d | %d, в новую ячейку %d | %d ---> ",
+                                    cell.getX(), cell.getY(), newX, newY);
+                            System.out.println("Перемещение успешно ~~~~~");
+
+                        }
 
                     }
                 }
+
+
+            } else {
+                System.out.println("трава не бегает");
             }
+
+
         }
+
+
     }
 }
 

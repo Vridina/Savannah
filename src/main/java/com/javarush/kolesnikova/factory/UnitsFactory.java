@@ -20,7 +20,7 @@ public class UnitsFactory {
 
     public static Unit getUnit(UnitsName name) {
         UnitFactory unitFactory = unitsMakerMap.get(name);
-        System.out.printf("Рожден тип %s. ", name );
+//        System.out.printf("Рожден тип %s. ", name );
         return unitFactory.makeUnit();
 
     }
