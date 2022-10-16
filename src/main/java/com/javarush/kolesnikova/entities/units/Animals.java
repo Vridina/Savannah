@@ -14,7 +14,6 @@ public abstract class Animals extends Unit
         implements Reproduction, Eating, Running {
 
 
-
     public Animals(PropertiesUnit propertiesUnit) {
         this.icon = propertiesUnit.getIcon();
         this.name = propertiesUnit.getName();
@@ -40,15 +39,14 @@ public abstract class Animals extends Unit
 
     @Override
     public void running(Cell cell) {
-        System.out.println("ќбъект пытаетс€ убежать:)))");
-
-        int newX = cell.getX() + ThreadLocalRandom.current().nextInt(0,speed);
-        int newY = cell.getY() + ThreadLocalRandom.current().nextInt(0,speed);
+        System.out.printf("ќбъект пытаетс€ убежать из €чейки %d | %d \n", cell.getX(), cell.getY());
+        int newX = cell.getX() + ThreadLocalRandom.current().nextInt(0, speed-1);
+        int newY = cell.getY() + ThreadLocalRandom.current().nextInt(0, speed-1);
         boolean isMove = true;
-        if (newX >= 20 || newY >= 100 || newX < 0 || newY < 0 ) {
+        if (newX >= 20 || newY >= 100 || newX < 0 || newY < 0) {
             isMove = false;
         }
-        if (newX == cell.getX()  && newY == cell.getY()){
+        if (newX == cell.getX() && newY == cell.getY()) {
             isMove = false;
         }
         if (isMove) {
