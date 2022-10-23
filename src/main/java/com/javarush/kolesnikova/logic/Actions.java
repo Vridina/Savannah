@@ -5,11 +5,14 @@ import com.javarush.kolesnikova.entities.field.Cell;
 import com.javarush.kolesnikova.entities.field.GameField;
 import com.javarush.kolesnikova.entities.units.Animals;
 import com.javarush.kolesnikova.entities.units.Unit;
+import com.javarush.kolesnikova.entities.units.carnivorous.Carnivore;
+import com.javarush.kolesnikova.entities.units.herbivores.Herbivore;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.javarush.kolesnikova.constants.PropertiesUnit.chanceToHaveDinner;
 import static com.javarush.kolesnikova.entities.field.GameField.*;
 import static com.javarush.kolesnikova.factory.UnitsFactory.getUnit;
 import static com.javarush.kolesnikova.utils.Utils.getRandom;
@@ -22,8 +25,6 @@ public class Actions {
 
     public static void actions() {
         getCellsStat();
-
-
         Cell[][] field = getField();
         for (int y = 0; y < getRowY(); y++) {
             for (int x = 0; x < getColX(); x++) {
@@ -41,7 +42,50 @@ public class Actions {
                 }
             }
         }
+
+
     }
+
+
+    //получить информацию о животных в €ейке.
+    // если это хищник то пытаемс€ съесть жавотное из той же клетки
+    // если это траво€дное  то пытаемс€ съесть траву из той же клетки
+    // если вес животного равен 0 то умирает
+
+    private static void eating() {
+        Cell[][] field = getField();
+        for (int y = 0; y < getRowY(); y++) {
+            for (int x = 0; x < getColX(); x++) {
+                Cell cell = field[y][x];
+                int[][] ints = chanceToHaveDinner();
+                for (UnitsName name : cell.getUnitsInCell().keySet()) { // беру значение из €чейки
+                    if (getUnit(name) instanceof Carnivore) {   // ищу хищника
+                        Set<Unit> units = cell.getSetUnitsInCell(name); // получаю повалку объектов хищников
+                        boolean isEat = false;
+                        for (UnitsName uh : cell.getUnitsInCell().keySet()) { // ищу траво€дных
+                            if (getUnit(uh) instanceof Herbivore) {
+                                int chance = ints[name.ordinal()][uh.ordinal()];  // ищу шанс поедани€
+                                int random = getRandom(100); // беру случайное число от 0 до 100
+                                if (chance > random) {
+                                    isEat = true;  // хищник съедает жертву
+                                    // прибавл€етс€ вес у  хищника
+                                    // жертва умирает
+                                } else {
+                                    // отнимаетс€ треть сут. нормы от веса хащника
+                                    // если вес равен 0 то хищник умирает
+                                }
+
+
+                            } else if (getUnit(name) instanceof Herbivore) {
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+}
 
     private static void getCellsStat() {
         Cell[][] field = getField();
@@ -60,22 +104,16 @@ public class Actions {
                 }
             }
         }
-
         for (UnitsName name : map.keySet()) {
-            System.out.printf("%s = %d   ", getUnit(name).getIcon(), map.get(name));
+            System.out.printf("%s %s = %d\n",
+                    getUnit(name).getIcon(), getUnit(name).getName(), map.get(name));
         }
-        System.out.println();
 
-    }
-
-    private static void statistics(Cell cell, UnitsName name) {
 
     }
 
 
     private static void multiply(Cell cell, UnitsName name) {
-
-//        for (UnitsName name : cell.getUnitsInCell().keySet()) {
         int maxUnitsInCell = getUnit(name).getMaxUnitsInCell();
         Set<Unit> units = cell.getSetUnitsInCell(name);
         int numberOfOneTypeOfUnits = units.size();
@@ -109,7 +147,6 @@ public class Actions {
 
 
     private static void running(Cell cell, UnitsName name) {
-//        for (UnitsName name : cell.getUnitsInCell().keySet()) {
         Set<Unit> units = cell.getSetUnitsInCell(name);
         HashSet<Unit> unitsCopy = new HashSet<>(units);
         if (getUnit(name) instanceof Animals) {

@@ -24,11 +24,10 @@ public class WordCreate {
     //  создаем животных и заселяем в ячейки.
 
     public static void create() {
-        System.out.println("Создаем мир и населяем животными: ");
+
         for (int y = 0; y < getRowY(); y++) {
             for (int x = 0; x < getColX(); x++) {
                 HashMap<UnitsName, Set<Unit>> unitsInCell = new HashMap<>();
-
                 Cell cell = new Cell(x, y, unitsInCell);
                 Cell[][] field = getField();
                 field[y][x] = cell;
@@ -36,16 +35,18 @@ public class WordCreate {
                     Unit unit = getUnit(name);
                     int maxUnitsInCell = unit.getMaxUnitsInCell();
                     int numRandom = getRandom(maxUnitsInCell);
-                    System.out.printf("\nРождено %d/%d %s", numRandom, maxUnitsInCell, unit.getName());
+//                    System.out.printf("\nРождено %d/%d %s",  numRandom, maxUnitsInCell, unit.getName());
                     Set<Unit> unitsOneTypeSet = new HashSet<>();
                     for (int n = 0; n < numRandom; n++) {
                         unitsOneTypeSet.add(unit.clone());
                     }
                     unitsInCell.put(name, unitsOneTypeSet);
                 }
+
             }
+
         }
-        System.out.println("\n\n================ Мир создан ================= \n");
+//        System.out.println("\n\n================ Мир создан ================= \n");
     }
 
 
