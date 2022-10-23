@@ -28,13 +28,10 @@ public class PropertiesUnit {
         return EnumSet.allOf(UnitsName.class);
     }
 
-
-
-
     private static final Map<UnitsName, PropertiesUnit> unitsPropertiesMap = Map.of(
-            WOLF, new PropertiesUnit("", "Волк", 50.0, 3, 3, 8.0),
-            RABBIT, new PropertiesUnit("", "Заяц", 20., 2, 5, 0.45),
-            HERB, new PropertiesUnit("", "Трава", 20., 2, 5, 0.45));
+            WOLF, new PropertiesUnit("\\uD83D\\uDC3A", "Волк", 50.0, 3, 3, 8.0),
+            RABBIT, new PropertiesUnit("\\uD83D\\uDC07", "Заяц", 20., 2, 5, 0.45),
+            HERB, new PropertiesUnit("\\uD83C\\uDF3F", "Трава", 20., 2, 5, 0.45));
 
 
     public static PropertiesUnit unitsProperties(UnitsName unitsName) {
@@ -52,6 +49,8 @@ public class PropertiesUnit {
 
         chanceToHaveDinner[RABBIT.ordinal()][RABBIT.ordinal()] = 60;
         chanceToHaveDinner[RABBIT.ordinal()][HERB.ordinal()] = 100;
+
+
 
         return chanceToHaveDinner;
     }

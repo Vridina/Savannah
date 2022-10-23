@@ -10,15 +10,11 @@ public class MainController {
     public static void startApp() {
         WordCreate.create();
         OneDayOfLife.start();
-        printStatistic();
     }
 
 
 
 
-    public static void printStatistic() {
-        System.out.println("Вывели статистику за 1 день");
-    }
 
 
 

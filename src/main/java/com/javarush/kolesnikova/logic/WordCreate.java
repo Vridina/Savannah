@@ -32,23 +32,20 @@ public class WordCreate {
                 Cell cell = new Cell(x, y, unitsInCell);
                 Cell[][] field = getField();
                 field[y][x] = cell;
-                for (UnitsName unitsName : allUnits()) {
-                    Unit unit = getUnit(unitsName);
+                for (UnitsName name : allUnits()) {
+                    Unit unit = getUnit(name);
                     int maxUnitsInCell = unit.getMaxUnitsInCell();
                     int numRandom = getRandom(maxUnitsInCell);
-                    System.out.printf("Макс число животных данного вида в ячейке %d. Создано %d %s \n", maxUnitsInCell, numRandom, unit.getName());
+                    System.out.printf("\nРождено %d/%d %s", numRandom, maxUnitsInCell, unit.getName());
                     Set<Unit> unitsOneTypeSet = new HashSet<>();
                     for (int n = 0; n < numRandom; n++) {
                         unitsOneTypeSet.add(unit.clone());
                     }
-                    unitsInCell.put(unitsName, unitsOneTypeSet);
+                    unitsInCell.put(name, unitsOneTypeSet);
                 }
-                System.out.println("\n" + unitsInCell);
-                System.out.println(unitsInCell.get(UnitsName.WOLF).size());
             }
-            System.out.println("\n \n Новая строка ______________");
         }
-
+        System.out.println("\n\n================ Мир создан ================= \n");
     }
 
 
