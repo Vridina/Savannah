@@ -20,7 +20,7 @@ import static com.javarush.kolesnikova.utils.Utils.getRandom;
 
 public class Actions {
 
-    private static final HashMap<UnitsName, Integer> map = new HashMap<>();
+//    private static final HashMap<UnitsName, Integer> MAP_STATISTIC = new HashMap<>();
 
 
     public static void actions() {
@@ -34,14 +34,15 @@ public class Actions {
                 }
             }
         }
-        for (int y = 0; y < getRowY(); y++) {
-            for (int x = 0; x < getColX(); x++) {
-                Cell cell = field[y][x];
-                for (UnitsName name : cell.getUnitsInCell().keySet()) {
-                    running(cell, name);
-                }
-            }
-        }
+//        for (int y = 0; y < getRowY(); y++) {
+//            for (int x = 0; x < getColX(); x++) {
+//                Cell cell = field[y][x];
+//                for (UnitsName name : cell.getUnitsInCell().keySet()) {
+//                    running(cell, name);
+//                }
+//            }
+//        }
+        eating();
 
 
     }
@@ -51,6 +52,11 @@ public class Actions {
     // если это хищник то пытаемся съесть жавотное из той же клетки
     // если это травоядное  то пытаемся съесть траву из той же клетки
     // если вес животного равен 0 то умирает
+    // отнимается треть сут. нормы от веса хащника
+    // если вес равен 0 то хищник умирает
+    // хищник съедает жертву
+    // прибавляется вес у  хищника
+    // жертва умирает
 
     private static void eating() {
         Cell[][] field = getField();
@@ -58,36 +64,44 @@ public class Actions {
             for (int x = 0; x < getColX(); x++) {
                 Cell cell = field[y][x];
                 int[][] ints = chanceToHaveDinner();
+
+
                 for (UnitsName name : cell.getUnitsInCell().keySet()) { // беру значение из ячейки
+
                     if (getUnit(name) instanceof Carnivore) {   // ищу хищника
-                        Set<Unit> units = cell.getSetUnitsInCell(name); // получаю повалку объектов хищников
-                        boolean isEat = false;
-                        for (UnitsName uh : cell.getUnitsInCell().keySet()) { // ищу травоядных
-                            if (getUnit(uh) instanceof Herbivore) {
-                                int chance = ints[name.ordinal()][uh.ordinal()];  // ищу шанс поедания
-                                int random = getRandom(100); // беру случайное число от 0 до 100
-                                if (chance > random) {
-                                    isEat = true;  // хищник съедает жертву
-                                    // прибавляется вес у  хищника
-                                    // жертва умирает
-                                } else {
-                                    // отнимается треть сут. нормы от веса хащника
-                                    // если вес равен 0 то хищник умирает
+
+                        Set<Unit> ucSet = cell.getSetUnitsInCell(name); // получаю повалку объектов хищников
+
+                        for (Unit ucUnit : ucSet) {
+                            for (UnitsName uh : cell.getUnitsInCell().keySet()) { // ищу травоядных
+                                if (getUnit(uh) instanceof Herbivore) {
+                                    Set<Unit> uhSet = cell.getSetUnitsInCell(uh);
+                                    boolean isEat = false;
+                                    int chance = ints[name.ordinal()][uh.ordinal()];  // беру шанс поедания
+                                    int random = getRandom(100); // беру случайное число от 0 до 100
+                                    if (chance > random) {
+                                        isEat = true;
+
+                                        System.out.printf("В %d|%d %s->%s %d/%d = TRUE\n",
+                                                cell.getX(), cell.getY(), ucUnit, uh, random, chance);
+                                    } else {
+                                        System.out.printf("В %d|%d %s->%s %d/%d = TRUE\n",
+                                                cell.getX(), cell.getY(), ucUnit, uh, random, chance);
+                                    }
                                 }
-
-
-                            } else if (getUnit(name) instanceof Herbivore) {
-
                             }
                         }
+                    } else if (getUnit(name) instanceof Herbivore) {
+                        System.out.println("для травоядных на нписано");
                     }
+
                 }
             }
         }
-
-}
+    }
 
     private static void getCellsStat() {
+        HashMap<UnitsName, Integer> mapStatistic = new HashMap<>();
         Cell[][] field = getField();
         for (int y = 0; y < getRowY(); y++) {
             for (int x = 0; x < getColX(); x++) {
@@ -95,18 +109,18 @@ public class Actions {
                 for (UnitsName name : cell.getUnitsInCell().keySet()) {
                     Set<Unit> setUnitsInCell = cell.getSetUnitsInCell(name);
                     int size = setUnitsInCell.size();
-                    if (map.containsKey(name) && map.get(name) > 0) {
-                        int i = map.get(name) + (Integer) size;
-                        map.put(name, i);
+                    if (mapStatistic.containsKey(name) && mapStatistic.get(name) > 0) {
+                        int i = mapStatistic.get(name) + (Integer) size;
+                        mapStatistic.put(name, i);
                     } else {
-                        map.put(name, size);
+                        mapStatistic.put(name, size);
                     }
                 }
             }
         }
-        for (UnitsName name : map.keySet()) {
+        for (UnitsName name : mapStatistic.keySet()) {
             System.out.printf("%s %s = %d\n",
-                    getUnit(name).getIcon(), getUnit(name).getName(), map.get(name));
+                    getUnit(name).getIcon(), getUnit(name).getName(), mapStatistic.get(name));
         }
 
 
