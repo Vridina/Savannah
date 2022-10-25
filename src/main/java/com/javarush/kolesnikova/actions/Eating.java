@@ -90,6 +90,7 @@ public interface Eating {
                 Set<Unit> hSet = cell.getSetUnitsInCell(h);
                 if (getUnit(h) instanceof Herbivore && !hSet.isEmpty()) {
                     int chance = ints[uc.ordinal()][h.ordinal()] / 10;  // беру шанс поедания
+                                                                      // todo если шанс равен 0 то пропускать такой шанс
                     int random = getRandom(10); // беру случайное число от 0 до 100
                     boolean isEat = chance > random;
                     Unit hUnit = hSet.iterator().next();

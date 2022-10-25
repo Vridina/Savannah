@@ -64,35 +64,36 @@ public class PropertiesUnit {
         chanceToHaveDinner[WOLF.ordinal()][FOX.ordinal()] = 0;
         chanceToHaveDinner[WOLF.ordinal()][BEAR.ordinal()] = 0;
         chanceToHaveDinner[WOLF.ordinal()][EAGLE.ordinal()] = 0;
-        chanceToHaveDinner[WOLF.ordinal()][HORSE.ordinal()] = 0;
-        chanceToHaveDinner[WOLF.ordinal()][DEER.ordinal()] = 0;
-        chanceToHaveDinner[WOLF.ordinal()][RABBIT.ordinal()] = 0;
-        chanceToHaveDinner[WOLF.ordinal()][MOUSE.ordinal()] = 0;
-        chanceToHaveDinner[WOLF.ordinal()][GOAT.ordinal()] = 0;
-        chanceToHaveDinner[WOLF.ordinal()][SHEEP.ordinal()] = 0;
-        chanceToHaveDinner[WOLF.ordinal()][HOG.ordinal()] = 0;
-        chanceToHaveDinner[WOLF.ordinal()][BUFFALO.ordinal()] = 0;
-        chanceToHaveDinner[WOLF.ordinal()][DUCK.ordinal()] = 0;
+        chanceToHaveDinner[WOLF.ordinal()][HORSE.ordinal()] = 15;
+        chanceToHaveDinner[WOLF.ordinal()][DEER.ordinal()] = 15;
+        chanceToHaveDinner[WOLF.ordinal()][RABBIT.ordinal()] = 60;
+        chanceToHaveDinner[WOLF.ordinal()][MOUSE.ordinal()] = 80;
+        chanceToHaveDinner[WOLF.ordinal()][GOAT.ordinal()] = 60;
+        chanceToHaveDinner[WOLF.ordinal()][SHEEP.ordinal()] = 70;
+        chanceToHaveDinner[WOLF.ordinal()][HOG.ordinal()] = 15;
+        chanceToHaveDinner[WOLF.ordinal()][BUFFALO.ordinal()] = 10;
+        chanceToHaveDinner[WOLF.ordinal()][DUCK.ordinal()] = 40;
         chanceToHaveDinner[WOLF.ordinal()][CATERPILLAR.ordinal()] = 0;
-
+        chanceToHaveDinner[WOLF.ordinal()][HERB.ordinal()] = 0;
 
 
         //SNAKE
         chanceToHaveDinner[SNAKE.ordinal()][WOLF.ordinal()] = 0;
         chanceToHaveDinner[SNAKE.ordinal()][SNAKE.ordinal()] = 0;
-        chanceToHaveDinner[SNAKE.ordinal()][FOX.ordinal()] = 0;
+        chanceToHaveDinner[SNAKE.ordinal()][FOX.ordinal()] = 15;
         chanceToHaveDinner[SNAKE.ordinal()][BEAR.ordinal()] = 0;
         chanceToHaveDinner[SNAKE.ordinal()][EAGLE.ordinal()] = 0;
         chanceToHaveDinner[SNAKE.ordinal()][HORSE.ordinal()] = 0;
         chanceToHaveDinner[SNAKE.ordinal()][DEER.ordinal()] = 0;
-        chanceToHaveDinner[SNAKE.ordinal()][RABBIT.ordinal()] = 0;
-        chanceToHaveDinner[SNAKE.ordinal()][MOUSE.ordinal()] = 0;
+        chanceToHaveDinner[SNAKE.ordinal()][RABBIT.ordinal()] = 20;
+        chanceToHaveDinner[SNAKE.ordinal()][MOUSE.ordinal()] = 40;
         chanceToHaveDinner[SNAKE.ordinal()][GOAT.ordinal()] = 0;
         chanceToHaveDinner[SNAKE.ordinal()][SHEEP.ordinal()] = 0;
         chanceToHaveDinner[SNAKE.ordinal()][HOG.ordinal()] = 0;
         chanceToHaveDinner[SNAKE.ordinal()][BUFFALO.ordinal()] = 0;
-        chanceToHaveDinner[SNAKE.ordinal()][DUCK.ordinal()] = 0;
+        chanceToHaveDinner[SNAKE.ordinal()][DUCK.ordinal()] = 10;
         chanceToHaveDinner[SNAKE.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[SNAKE.ordinal()][HERB.ordinal()] = 0;
 
         //FOX
         chanceToHaveDinner[FOX.ordinal()][WOLF.ordinal()] = 0;
@@ -102,48 +103,51 @@ public class PropertiesUnit {
         chanceToHaveDinner[FOX.ordinal()][EAGLE.ordinal()] = 0;
         chanceToHaveDinner[FOX.ordinal()][HORSE.ordinal()] = 0;
         chanceToHaveDinner[FOX.ordinal()][DEER.ordinal()] = 0;
-        chanceToHaveDinner[FOX.ordinal()][RABBIT.ordinal()] = 0;
-        chanceToHaveDinner[FOX.ordinal()][MOUSE.ordinal()] = 0;
+        chanceToHaveDinner[FOX.ordinal()][RABBIT.ordinal()] = 70;
+        chanceToHaveDinner[FOX.ordinal()][MOUSE.ordinal()] = 90;
         chanceToHaveDinner[FOX.ordinal()][GOAT.ordinal()] = 0;
         chanceToHaveDinner[FOX.ordinal()][SHEEP.ordinal()] = 0;
         chanceToHaveDinner[FOX.ordinal()][HOG.ordinal()] = 0;
         chanceToHaveDinner[FOX.ordinal()][BUFFALO.ordinal()] = 0;
-        chanceToHaveDinner[FOX.ordinal()][DUCK.ordinal()] = 0;
-        chanceToHaveDinner[FOX.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[FOX.ordinal()][DUCK.ordinal()] = 60;
+        chanceToHaveDinner[FOX.ordinal()][CATERPILLAR.ordinal()] = 40;
+        chanceToHaveDinner[FOX.ordinal()][HERB.ordinal()] = 0;
 
         //BEAR
         chanceToHaveDinner[BEAR.ordinal()][WOLF.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][SNAKE.ordinal()] = 0;
+        chanceToHaveDinner[BEAR.ordinal()][SNAKE.ordinal()] = 80;
         chanceToHaveDinner[BEAR.ordinal()][FOX.ordinal()] = 0;
         chanceToHaveDinner[BEAR.ordinal()][BEAR.ordinal()] = 0;
         chanceToHaveDinner[BEAR.ordinal()][EAGLE.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][HORSE.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][DEER.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][RABBIT.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][MOUSE.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][GOAT.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][SHEEP.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][HOG.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][BUFFALO.ordinal()] = 0;
-        chanceToHaveDinner[BEAR.ordinal()][DUCK.ordinal()] = 0;
+        chanceToHaveDinner[BEAR.ordinal()][HORSE.ordinal()] = 40;
+        chanceToHaveDinner[BEAR.ordinal()][DEER.ordinal()] = 80;
+        chanceToHaveDinner[BEAR.ordinal()][RABBIT.ordinal()] = 80;
+        chanceToHaveDinner[BEAR.ordinal()][MOUSE.ordinal()] = 90;
+        chanceToHaveDinner[BEAR.ordinal()][GOAT.ordinal()] = 70;
+        chanceToHaveDinner[BEAR.ordinal()][SHEEP.ordinal()] = 70;
+        chanceToHaveDinner[BEAR.ordinal()][HOG.ordinal()] = 50;
+        chanceToHaveDinner[BEAR.ordinal()][BUFFALO.ordinal()] = 20;
+        chanceToHaveDinner[BEAR.ordinal()][DUCK.ordinal()] = 10;
         chanceToHaveDinner[BEAR.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[BEAR.ordinal()][HERB.ordinal()] = 0;
 
         //EAGLE
         chanceToHaveDinner[EAGLE.ordinal()][WOLF.ordinal()] = 0;
         chanceToHaveDinner[EAGLE.ordinal()][SNAKE.ordinal()] = 0;
-        chanceToHaveDinner[EAGLE.ordinal()][FOX.ordinal()] = 0;
+        chanceToHaveDinner[EAGLE.ordinal()][FOX.ordinal()] = 10;
         chanceToHaveDinner[EAGLE.ordinal()][BEAR.ordinal()] = 0;
         chanceToHaveDinner[EAGLE.ordinal()][EAGLE.ordinal()] = 0;
         chanceToHaveDinner[EAGLE.ordinal()][HORSE.ordinal()] = 0;
         chanceToHaveDinner[EAGLE.ordinal()][DEER.ordinal()] = 0;
-        chanceToHaveDinner[EAGLE.ordinal()][RABBIT.ordinal()] = 0;
-        chanceToHaveDinner[EAGLE.ordinal()][MOUSE.ordinal()] = 0;
+        chanceToHaveDinner[EAGLE.ordinal()][RABBIT.ordinal()] = 90;
+        chanceToHaveDinner[EAGLE.ordinal()][MOUSE.ordinal()] = 90;
         chanceToHaveDinner[EAGLE.ordinal()][GOAT.ordinal()] = 0;
         chanceToHaveDinner[EAGLE.ordinal()][SHEEP.ordinal()] = 0;
         chanceToHaveDinner[EAGLE.ordinal()][HOG.ordinal()] = 0;
         chanceToHaveDinner[EAGLE.ordinal()][BUFFALO.ordinal()] = 0;
-        chanceToHaveDinner[EAGLE.ordinal()][DUCK.ordinal()] = 0;
+        chanceToHaveDinner[EAGLE.ordinal()][DUCK.ordinal()] = 80;
         chanceToHaveDinner[EAGLE.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[EAGLE.ordinal()][HERB.ordinal()] = 0;
 
         //HORSE
         chanceToHaveDinner[HORSE.ordinal()][WOLF.ordinal()] = 0;
@@ -161,6 +165,7 @@ public class PropertiesUnit {
         chanceToHaveDinner[HORSE.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[HORSE.ordinal()][DUCK.ordinal()] = 0;
         chanceToHaveDinner[HORSE.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[HORSE.ordinal()][HERB.ordinal()] = 100;
 
 
         //DEER
@@ -179,6 +184,7 @@ public class PropertiesUnit {
         chanceToHaveDinner[DEER.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[DEER.ordinal()][DUCK.ordinal()] = 0;
         chanceToHaveDinner[DEER.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[DEER.ordinal()][HERB.ordinal()] = 100;
 
         //RABBIT
         chanceToHaveDinner[RABBIT.ordinal()][WOLF.ordinal()] = 0;
@@ -196,6 +202,7 @@ public class PropertiesUnit {
         chanceToHaveDinner[RABBIT.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[RABBIT.ordinal()][DUCK.ordinal()] = 0;
         chanceToHaveDinner[RABBIT.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[RABBIT.ordinal()][HERB.ordinal()]= 100;
 
 
         //MOUSE
@@ -213,7 +220,8 @@ public class PropertiesUnit {
         chanceToHaveDinner[MOUSE.ordinal()][HOG.ordinal()] = 0;
         chanceToHaveDinner[MOUSE.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[MOUSE.ordinal()][DUCK.ordinal()] = 0;
-        chanceToHaveDinner[MOUSE.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[MOUSE.ordinal()][CATERPILLAR.ordinal()] = 90;
+        chanceToHaveDinner[MOUSE.ordinal()][HERB.ordinal()] = 100;
 
         //GOAT
         chanceToHaveDinner[GOAT.ordinal()][WOLF.ordinal()] = 0;
@@ -231,6 +239,7 @@ public class PropertiesUnit {
         chanceToHaveDinner[GOAT.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[GOAT.ordinal()][DUCK.ordinal()] = 0;
         chanceToHaveDinner[GOAT.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[GOAT.ordinal()][HERB.ordinal()] = 100;
 
         //SHEEP
         chanceToHaveDinner[SHEEP.ordinal()][WOLF.ordinal()] = 0;
@@ -248,6 +257,7 @@ public class PropertiesUnit {
         chanceToHaveDinner[SHEEP.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[SHEEP.ordinal()][DUCK.ordinal()] = 0;
         chanceToHaveDinner[SHEEP.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[SHEEP.ordinal()][HERB.ordinal()] = 100;
 
         //HOG
         chanceToHaveDinner[HOG.ordinal()][WOLF.ordinal()] = 0;
@@ -258,13 +268,14 @@ public class PropertiesUnit {
         chanceToHaveDinner[HOG.ordinal()][HORSE.ordinal()] = 0;
         chanceToHaveDinner[HOG.ordinal()][DEER.ordinal()] = 0;
         chanceToHaveDinner[HOG.ordinal()][RABBIT.ordinal()] = 0;
-        chanceToHaveDinner[HOG.ordinal()][MOUSE.ordinal()] = 0;
+        chanceToHaveDinner[HOG.ordinal()][MOUSE.ordinal()] = 50;
         chanceToHaveDinner[HOG.ordinal()][GOAT.ordinal()] = 0;
         chanceToHaveDinner[HOG.ordinal()][SHEEP.ordinal()] = 0;
         chanceToHaveDinner[HOG.ordinal()][HOG.ordinal()] = 0;
         chanceToHaveDinner[HOG.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[HOG.ordinal()][DUCK.ordinal()] = 0;
-        chanceToHaveDinner[HOG.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[HOG.ordinal()][CATERPILLAR.ordinal()] = 90;
+        chanceToHaveDinner[HOG.ordinal()][HERB.ordinal()] =100;
 
         //BUFFALO
         chanceToHaveDinner[BUFFALO.ordinal()][WOLF.ordinal()] = 0;
@@ -275,13 +286,14 @@ public class PropertiesUnit {
         chanceToHaveDinner[BUFFALO.ordinal()][HORSE.ordinal()] = 0;
         chanceToHaveDinner[BUFFALO.ordinal()][DEER.ordinal()] = 0;
         chanceToHaveDinner[BUFFALO.ordinal()][RABBIT.ordinal()] = 0;
-        chanceToHaveDinner[BUFFALO.ordinal()][MOUSE.ordinal()] = 0;
+        chanceToHaveDinner[BUFFALO.ordinal()][MOUSE.ordinal()] = 50;
         chanceToHaveDinner[BUFFALO.ordinal()][GOAT.ordinal()] = 0;
         chanceToHaveDinner[BUFFALO.ordinal()][SHEEP.ordinal()] = 0;
         chanceToHaveDinner[BUFFALO.ordinal()][HOG.ordinal()] = 0;
         chanceToHaveDinner[BUFFALO.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[BUFFALO.ordinal()][DUCK.ordinal()] = 0;
         chanceToHaveDinner[BUFFALO.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[BUFFALO.ordinal()][HERB.ordinal()] = 100;
 
         //DUCK
         chanceToHaveDinner[DUCK.ordinal()][WOLF.ordinal()] = 0;
@@ -298,7 +310,8 @@ public class PropertiesUnit {
         chanceToHaveDinner[DUCK.ordinal()][HOG.ordinal()] = 0;
         chanceToHaveDinner[DUCK.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[DUCK.ordinal()][DUCK.ordinal()] = 0;
-        chanceToHaveDinner[DUCK.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[DUCK.ordinal()][CATERPILLAR.ordinal()] = 90;
+        chanceToHaveDinner[DUCK.ordinal()][HERB.ordinal()] = 100;
 
         //CATERPILLAR
         chanceToHaveDinner[CATERPILLAR.ordinal()][WOLF.ordinal()] = 0;
@@ -316,6 +329,7 @@ public class PropertiesUnit {
         chanceToHaveDinner[CATERPILLAR.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[CATERPILLAR.ordinal()][DUCK.ordinal()] = 0;
         chanceToHaveDinner[CATERPILLAR.ordinal()][CATERPILLAR.ordinal()] = 0;
+        chanceToHaveDinner[CATERPILLAR.ordinal()][HERB.ordinal()] = 0;
 
         //HERB
         chanceToHaveDinner[HERB.ordinal()][WOLF.ordinal()] = 0;
@@ -333,7 +347,7 @@ public class PropertiesUnit {
         chanceToHaveDinner[HERB.ordinal()][BUFFALO.ordinal()] = 0;
         chanceToHaveDinner[HERB.ordinal()][DUCK.ordinal()] = 0;
         chanceToHaveDinner[HERB.ordinal()][CATERPILLAR.ordinal()] = 0;
-
+        chanceToHaveDinner[HERB.ordinal()][HERB.ordinal()] = 0;
 
 
 
