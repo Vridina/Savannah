@@ -48,10 +48,5 @@ public abstract class Unit
         System.out.println(s + " поток для объекта запустился");
 
     }
-
-    @Override
-    public void reproduction() {
-
-    }
 }
 

@@ -27,37 +27,10 @@ public abstract class Animals extends Unit
 
     }
 
-
     @Override
     public void run() {
         super.run();
     }
-
-    @Override
-    public void eating() {
-        System.out.println("_____________ќбъект пытаетс€ кого нить съесть:)))");
-    }
-
-    @Override
-    public void running(Cell cell) {
-        System.out.printf("ќбъект пытаетс€ убежать из €чейки %d | %d \n", cell.getX(), cell.getY());
-        int newX = cell.getX() + ThreadLocalRandom.current().nextInt(0, speed - 1);
-        int newY = cell.getY() + ThreadLocalRandom.current().nextInt(0, speed - 1);
-        boolean isMove = true;
-        if (newX >= 20 || newY >= 100 || newX < 0 || newY < 0) {
-            isMove = false;
-        }
-        if (newX == cell.getX() && newY == cell.getY()) {
-            isMove = false;
-        }
-        if (isMove) {
-
-
-            }
-
-
-
-        }
 
     }
 
