@@ -4,7 +4,6 @@ import com.javarush.kolesnikova.constants.PropertiesUnit;
 
 public class Rabbit extends Herbivore {
 
-
     public Rabbit(PropertiesUnit propertiesUnit) {
         super(propertiesUnit);
     }
