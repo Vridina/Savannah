@@ -2,6 +2,7 @@ package com.javarush.kolesnikova.logic;
 
 import com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName;
 import com.javarush.kolesnikova.entities.field.Cell;
+import com.javarush.kolesnikova.entities.units.Animals;
 import com.javarush.kolesnikova.entities.units.Unit;
 import com.javarush.kolesnikova.entities.units.carnivorous.Carnivore;
 import com.javarush.kolesnikova.entities.units.herbivores.Herbivore;
@@ -17,13 +18,15 @@ import static com.javarush.kolesnikova.factory.UnitsFactory.getUnit;
 public class Analytics {
 
 
-    public static void getCellsStat() {
+    public static int getCellsStat() {
 
         HashMap<UnitsName, Integer> mapStatistic = new HashMap<>(); // в мапу собираем статистику
+        int ok = 0;
         Cell[][] field = getField();
         for (int y = 0; y < getRowY(); y++) {
             for (int x = 0; x < getColX(); x++) {
                 Cell cell = field[y][x];
+
                 for (UnitsName name : cell.getUnitsInCell().keySet()) {
                     Set<Unit> setUnitsInCell = cell.getSetUnitsInCell(name);
                     int size = setUnitsInCell.size();
@@ -33,6 +36,7 @@ public class Analytics {
                     } else {
                         mapStatistic.put(name, size);
                     }
+
                 }
             }
         }
@@ -41,9 +45,11 @@ public class Analytics {
                 System.out.printf("%s %s = %d  ",
                         getUnit(name).getIcon(), getUnit(name).getName(), mapStatistic.get(name));
             }
-
-        }
+            ok = ok + mapStatistic.get(name);
+       }
+        System.out.printf("\nВсего: " + ok);
         System.out.println();
+        return  ok;
     }
 
 }

@@ -9,13 +9,17 @@ import com.javarush.kolesnikova.actions.Running;
 public class OneDayOfLife {
 
     public static void start() {
-
-        for (int i = 0; i < 50; i++) {
-            System.out.println("\n=================  День " + (i + 1) + " =================");
-            Analytics.getCellsStat();
-            Reproduction.multiply();
-            Running.run();
-            Eating.eat();
+        int i = 1;
+        while (true) {
+            System.out.println("\n=================  День " + (i) + " =================");
+            i++;
+            if (Analytics.getCellsStat() > 0) {
+                Reproduction.multiply();
+                Running.run();
+                Eating.eat();
+            } else {
+                break;
+            }
 
         }
     }
