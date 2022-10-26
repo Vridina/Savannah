@@ -12,7 +12,7 @@ import static com.javarush.kolesnikova.entities.field.GameField.*;
 import static com.javarush.kolesnikova.factory.UnitsFactory.getUnit;
 
 public interface Reproduction {
-//    void reproduction();
+
 
 
     static void multiply() {
@@ -36,19 +36,17 @@ public interface Reproduction {
                         for (int i = 0; i < numberOfNewUnitsResult; i++) {
                             units.add(getUnit(name).clone());
                         }
-                        System.out.printf("В %d|%d - %d %s. Рождено %d. Всего %d/%d\n",
-                                cell.getX(), cell.getY(), numberOfOneTypeOfUnits, name, numberOfNewUnitsResult,
-                                cell.getUnitsInCell().get(name).size(), maxUnitsInCell);
-
-
+//                        System.out.printf("пїЅ %d|%d - %d %s. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d. пїЅпїЅпїЅпїЅпїЅ %d/%d\n",
+//                                cell.getX(), cell.getY(), numberOfOneTypeOfUnits, name, numberOfNewUnitsResult,
+//                                cell.getUnitsInCell().get(name).size(), maxUnitsInCell);
                     } else {
                         int numberOfNewUnitsResult = maxUnitsInCell - numberOfOneTypeOfUnits;
                         for (int i = 0; i < numberOfNewUnitsResult; i++) {
                             units.add(getUnit(name).clone());
                         }
-                        System.out.printf("В %d|%d - %d %s. Выросло %d. Всего %d/%d\n",
-                                cell.getX(), cell.getY(), numberOfOneTypeOfUnits, name, numberOfNewUnitsResult,
-                                cell.getUnitsInCell().get(name).size(), maxUnitsInCell);
+//                        System.out.printf("пїЅ %d|%d - %d %s. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d. пїЅпїЅпїЅпїЅпїЅ %d/%d\n",
+//                                cell.getX(), cell.getY(), numberOfOneTypeOfUnits, name, numberOfNewUnitsResult,
+//                                cell.getUnitsInCell().get(name).size(), maxUnitsInCell);
                     }
                 }
             }

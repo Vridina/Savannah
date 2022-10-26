@@ -5,8 +5,8 @@ import lombok.ToString;
 @ToString
 public class GameField {
 
-    private static final int rowY = 2;
-    private static final int colX = 2;
+    private static final int rowY = 5;
+    private static final int colX = 5;
 
     private static final Cell[][] field = new Cell[rowY][colX];
 

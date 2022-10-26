@@ -15,14 +15,6 @@ import static com.javarush.kolesnikova.utils.Utils.getRandom;
 
 public class WordCreate {
 
-    //todo -  а на кого делать потоки, в какой момент создать сервис и добавл€ть их?
-    //    static ExecutorService executorService = Executors.newWorkStealingPool();
-    //     executorService.submit(clone);
-
-
-    //  создание пол€ с €чейками, каждой €чейке присваиваютс€ координаты x и добавл€ютс€ в массив field
-    //  создаем животных и засел€ем в €чейки.
-
     public static void create() {
 
         for (int y = 0; y < getRowY(); y++) {
@@ -35,7 +27,6 @@ public class WordCreate {
                     Unit unit = getUnit(name);
                     int maxUnitsInCell = unit.getMaxUnitsInCell();
                     int numRandom = getRandom(maxUnitsInCell);
-//                    System.out.printf("\n–ождено %d/%d %s",  numRandom, maxUnitsInCell, unit.getName());
                     Set<Unit> unitsOneTypeSet = new HashSet<>();
                     for (int n = 0; n < numRandom; n++) {
                         unitsOneTypeSet.add(unit.clone());
@@ -46,7 +37,6 @@ public class WordCreate {
             }
 
         }
-//        System.out.println("\n\n================ ћир создан ================= \n");
     }
 
 

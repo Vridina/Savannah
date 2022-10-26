@@ -15,7 +15,6 @@ import static com.javarush.kolesnikova.utils.Utils.getRandom;
 
 public interface Running {
 
-    //    void running(Cell cell);
     static void run() {
         Cell[][] field = getField();
         for (int y = 0; y < getRowY(); y++) {
@@ -39,22 +38,22 @@ public interface Running {
                                 newY *= -1;
                             }
                             boolean isMove = true;
-                            System.out.printf("%s %d|%d в %d|%d = ", units.iterator().next().getName(), cell.getX(), cell.getY(), newX, newY);
+//                            System.out.printf("%s %d|%d пїЅ %d|%d = ", units.iterator().next().getName(), cell.getX(), cell.getY(), newX, newY);
 
                             if (newX >= GameField.getColX() || newY >= GameField.getRowY() || newX < 0 || newY < 0) {
-                                System.out.println("FALSE | выход за пределы поля");
+//                                System.out.println("FALSE | пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
                             } else if (newX == cell.getX() && newY == cell.getY()) {
-                                System.out.println("FALSE | та же ячейка");
+//                                System.out.println("FALSE | пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
                             } else {
                                 Cell cellTarget = getField()[newY][newX];
                                 Set<Unit> setUnitsInCellTarget = cellTarget.getSetUnitsInCell(name);
                                 int numberOfOneTypeOfUnitsInNewCell = setUnitsInCellTarget.size();
                                 if (numberOfOneTypeOfUnitsInNewCell >= maxUnitsInCell) {
-                                    System.out.println("FALSE | перенаселение");
+//                                    System.out.println("FALSE | пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
                                     isMove = false;
                                 }
                                 if (isMove) {
-                                    System.out.println("TRUE | успешно");
+//                                    System.out.println("TRUE | пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
                                     setUnitsInCellTarget.add(nextUnit.clone());
                                     units.remove(nextUnit);
                                 }

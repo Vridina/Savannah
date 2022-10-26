@@ -22,7 +22,8 @@ public class PropertiesUnit {
     private final Double kilogramOfFood;
 
     public enum UnitsName {
-        WOLF, SNAKE, FOX, BEAR, EAGLE, HORSE, DEER, RABBIT, MOUSE, GOAT, SHEEP, HOG, BUFFALO, DUCK, CATERPILLAR, HERB
+                WOLF, SNAKE, FOX, BEAR, EAGLE, HORSE, DEER, RABBIT, MOUSE, GOAT, SHEEP, HOG, BUFFALO, DUCK, CATERPILLAR, HERB
+
     }
 
     public static EnumSet<UnitsName> allUnits() {
@@ -30,22 +31,22 @@ public class PropertiesUnit {
     }
 
     private static final Map<UnitsName, PropertiesUnit> unitsPropertiesMap = Map.ofEntries(
-            Map.entry(WOLF, new PropertiesUnit("\uD83D\uDC3A", "Волк", 50.0, 3, 3, 8.0)),
-            Map.entry(SNAKE, new PropertiesUnit("", "Змея", 50.0, 3, 3, 8.0)),
-            Map.entry(FOX, new PropertiesUnit("", "Лиса", 50.0, 3, 3, 8.0)),
-            Map.entry(BEAR, new PropertiesUnit("", "Мишка", 50.0, 3, 3, 8.0)),
-            Map.entry(EAGLE, new PropertiesUnit("", "Орел", 50.0, 3, 3, 8.0)),
-            Map.entry(HORSE, new PropertiesUnit("", "Лошадь", 50.0, 3, 3, 8.0)),
-            Map.entry(DEER, new PropertiesUnit("", "Олень", 50.0, 3, 3, 8.0)),
-            Map.entry(RABBIT, new PropertiesUnit("", "Заяц", 20., 2, 5, 3.45)),
-            Map.entry(MOUSE, new PropertiesUnit("", "Мышка", 50.0, 3, 3, 8.0)),
-            Map.entry(GOAT, new PropertiesUnit("", "Козлик", 50.0, 3, 3, 8.0)),
-            Map.entry(SHEEP, new PropertiesUnit("", "Овечка", 50.0, 3, 3, 8.0)),
-            Map.entry(HOG, new PropertiesUnit("", "Кабан", 50.0, 3, 3, 8.0)),
-            Map.entry(BUFFALO, new PropertiesUnit("", "Буйвол", 50.0, 3, 3, 8.0)),
-            Map.entry(DUCK, new PropertiesUnit("", "Утка", 50.0, 3, 3, 8.0)),
-            Map.entry(CATERPILLAR, new PropertiesUnit("", "Гусеница", 50.0, 3, 3, 8.0)),
-            Map.entry(HERB, new PropertiesUnit("", "Трава", 1., 0, 2, 0.)));
+            Map.entry(WOLF, new PropertiesUnit("рџђє", "Р’РѕР»Рє", 50.0, 3, 30, 8.0)),
+            Map.entry(SNAKE, new PropertiesUnit("рџђЌ", "Р—РјРµСЏ", 15.0, 1, 30, 3.0)),
+            Map.entry(FOX, new PropertiesUnit("рџ¦Љ", "Р›РёСЃР°", 8.0, 2, 30, 2.0)),
+            Map.entry(BEAR, new PropertiesUnit("рџђ»", "РњРёС€РєР°", 500.0, 2, 5, 80.0)),
+            Map.entry(EAGLE, new PropertiesUnit("рџ¦…", "РћСЂРµР»", 6.0, 3, 20, 1.0)),
+            Map.entry(HORSE, new PropertiesUnit("рџЋ ", "Р›РѕС€Р°РґСЊ", 400.0, 4, 20, 60.0)),
+            Map.entry(DEER, new PropertiesUnit("рџ¦Њ", "РћР»РµРЅСЊ", 300.0, 4, 20, 50.0)),
+            Map.entry(RABBIT, new PropertiesUnit("рџђ‡", "Р—Р°СЏС†", 2., 2, 150, 0.45)),
+            Map.entry(MOUSE, new PropertiesUnit("рџђЃ", "РњС‹С€РєР°", 0.05, 1, 500, 0.01)),
+            Map.entry(GOAT, new PropertiesUnit("рџђђ", "РљРѕР·Р»РёРє", 60.0, 3, 140, 10.0)),
+            Map.entry(SHEEP, new PropertiesUnit("рџђ‘", "РћРІРµС‡РєР°", 70.0, 3, 140, 15.0)),
+            Map.entry(HOG, new PropertiesUnit("рџђЏ", "РљР°Р±Р°РЅ", 400.0, 2, 50, 50.0)),
+            Map.entry(BUFFALO, new PropertiesUnit("рџђѓ", "Р‘СѓР№РІРѕР»", 700.0, 3, 10, 100.0)),
+            Map.entry(DUCK, new PropertiesUnit("рџ¦†", "РЈС‚РєР°", 1.0, 4, 200, 0.15)),
+            Map.entry(CATERPILLAR, new PropertiesUnit("рџђ›", "Р“СѓСЃРµРЅРёС†Р°", 0.01, 3, 1000, 8.0)),
+            Map.entry(HERB, new PropertiesUnit("рџЊї", "РўСЂР°РІР°", 1., 0, 200, 0.)));
 
 
     public static PropertiesUnit unitsProperties(UnitsName unitsName) {
@@ -348,7 +349,6 @@ public class PropertiesUnit {
         chanceToHaveDinner[HERB.ordinal()][DUCK.ordinal()] = 0;
         chanceToHaveDinner[HERB.ordinal()][CATERPILLAR.ordinal()] = 0;
         chanceToHaveDinner[HERB.ordinal()][HERB.ordinal()] = 0;
-
 
 
         return chanceToHaveDinner;

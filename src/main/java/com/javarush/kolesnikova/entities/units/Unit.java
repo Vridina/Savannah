@@ -45,7 +45,7 @@ public abstract class Unit
     @Override
     public void run() {
         String s = getClass().getSimpleName();
-        System.out.println(s + " поток для объекта запустился");
+        System.out.println(s + " РїРѕС‚РѕРє РґР»СЏ РѕР±СЉРµРєС‚Р° Р·Р°РїСѓСЃС‚РёР»СЃСЏ");
 
     }
 }

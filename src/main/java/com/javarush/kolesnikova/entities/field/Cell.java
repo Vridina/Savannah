@@ -24,7 +24,7 @@ public class Cell {
         this.x = x;
         this.y = y;
         this.unitsInCell = unitsInCell;
-//        System.out.printf("\n\nCоздана ячейка %d | %d в нее заселили: ", x, y);
+//        System.out.printf("\n\nCпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %d | %d пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ", x, y);
     }
 
     public Set<Unit> getSetUnitsInCell(UnitsName unitsName) {

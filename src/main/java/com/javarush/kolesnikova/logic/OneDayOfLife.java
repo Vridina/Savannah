@@ -10,11 +10,11 @@ public class OneDayOfLife {
 
     public static void start() {
 
-        for (int i = 0; i < 2; i++) {
-            System.out.println("\n=================  Δενό " + (i + 1) + " =================");
+        for (int i = 0; i < 50; i++) {
+            System.out.println("\n=================  Π”ΠµΠ½Ρ " + (i + 1) + " =================");
             Analytics.getCellsStat();
-            Reproduction.multiply();
-            Running.run();
+//            Reproduction.multiply();
+//            Running.run();
             Eating.eat();
 
         }

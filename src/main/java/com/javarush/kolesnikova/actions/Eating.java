@@ -1,7 +1,7 @@
 package com.javarush.kolesnikova.actions;
 
 
-import com.javarush.kolesnikova.constants.PropertiesUnit;
+import com.javarush.kolesnikova.constants.PropertiesUnit.UnitsName;
 import com.javarush.kolesnikova.entities.field.Cell;
 import com.javarush.kolesnikova.entities.units.Plants;
 import com.javarush.kolesnikova.entities.units.Unit;
@@ -18,63 +18,63 @@ import static com.javarush.kolesnikova.utils.Utils.getRandom;
 
 
 public interface Eating {
-//    void eating();
+    int[][] CHANCE = chanceToHaveDinner();
 
-
-  static void eat() {
+    static void eat() {
         Cell[][] field = getField();
         for (int y = 0; y < getRowY(); y++) {
             for (int x = 0; x < getColX(); x++) {
                 Cell cell = field[y][x];
-                int[][] ints = chanceToHaveDinner();
-                for (PropertiesUnit.UnitsName name : cell.getUnitsInCell().keySet()) { // беру значение из ячейки
-                    Set<Unit> cSet = cell.getSetUnitsInCell(name); // получаю повалку объектов хищников
-                    if (getUnit(name) instanceof Carnivore && !cSet.isEmpty()) {   // ищу хищника
-                        dinnerForCarnivore(cell, ints, name, cSet);
-                    } else if (getUnit(name) instanceof Herbivore) { // ищу травоядных
-                        dinnerForHerbivores(cell, cSet);
-
+                for (UnitsName type : cell.getUnitsInCell().keySet()) {
+                    if (getUnit(type) instanceof Carnivore) {
+                        dinnerForCarnivore(cell, type);
+                    } else if (getUnit(type) instanceof Herbivore) {
+                        dinnerForHerbivores(cell, type);
                     }
                 }
             }
         }
     }
 
-    private static void dinnerForHerbivores(Cell cell, Set<Unit> cSet) {
-        for (Unit hUnit : cSet) {
-            for (PropertiesUnit.UnitsName p : cell.getUnitsInCell().keySet()) {         // ищу травоядных
-                Set<Unit> pSet = cell.getSetUnitsInCell(p);
-                if (getUnit(p) instanceof Plants) {
+    private static void dinnerForHerbivores(Cell cell, UnitsName type) {
+        Set<Unit> unitsSet = cell.getSetUnitsInCell(type);
+        for (Unit unit : unitsSet) {
+            for (UnitsName victimType : cell.getUnitsInCell().keySet()) {
+                Set<Unit> pSet = cell.getSetUnitsInCell(victimType);
+                int chance1 = CHANCE[type.ordinal()][victimType.ordinal()] / 10;
+
+//                if (chance1 > 0) {
+                if (getUnit(victimType) instanceof Plants) {
                     boolean isEat = !pSet.isEmpty();
                     double soak = 0;
                     if (isEat) {
                         HashSet<Unit> pSetCopy = new HashSet<>(pSet);
                         for (Unit pUnit : pSetCopy) {
-                            if (soak <= hUnit.getKilogramOfFood()) {
-                                System.out.printf("В %d|%d %s\n->%s = TRUE\n",
-                                        cell.getX(), cell.getY(), hUnit, p);
+                            if (soak <= unit.getKilogramOfFood()) {
+//                                System.out.printf("Р’ %d|%d %s\n->%s = TRUE\n",
+//                                        cell.getX(), cell.getY(), unit, victimType);
                                 double w;
-                                if (pUnit.getWeight() >= hUnit.getKilogramOfFood()) {   // вес жертвы больше или равно кол-во нужному насыщению то
-                                    w = hUnit.getKilogramOfFood();                      //  берем вес нужный для насыщения
+                                if (pUnit.getWeight() >= unit.getKilogramOfFood()) {
+                                    w = unit.getKilogramOfFood();
                                 } else {
-                                    w = pUnit.getWeight();                              // иначе берем весь вес жертвы
+                                    w = pUnit.getWeight();
                                 }
                                 soak = soak + w;
                             }
                             pSet.remove(pUnit);
                         }
-                        hUnit.setWeight(hUnit.getWeight() + soak);
+                        unit.setWeight(unit.getWeight() + soak);
                     } else {
-                        double w = hUnit.getWeight() - hUnit.getKilogramOfFood() / 2;
-                        hUnit.setWeight(w);
-                        boolean isDeath = hUnit.getWeight() <= 0;
+                        double w = unit.getWeight() - unit.getKilogramOfFood() / 2;
+                        unit.setWeight(w);
+                        boolean isDeath = unit.getWeight() <= 0;
                         if (isDeath) {
-                            cSet.remove(hUnit);
-                            System.out.printf("В %d|%d %s\n-> = isDeath\n",
-                                    cell.getX(), cell.getY(), hUnit);
+                            unitsSet.remove(unit);
+//                            System.out.printf("Р’ %d|%d %s\n-> = isDeath\n",
+//                                    cell.getX(), cell.getY(), unit);
                         }
-                        System.out.printf("В %d|%d %s\n-> FALSE\n",
-                                cell.getX(), cell.getY(), hUnit);
+//                        System.out.printf("Р’ %d|%d %s\n-> FALSE\n",
+//                                cell.getX(), cell.getY(), unit);
                     }
 
                 }
@@ -84,43 +84,59 @@ public interface Eating {
     }
 
 
-    private static void dinnerForCarnivore(Cell cell, int[][] ints, PropertiesUnit.UnitsName uc, Set<Unit> ucSet) {
-        for (Unit cUnit : ucSet) {
-            for (PropertiesUnit.UnitsName h : cell.getUnitsInCell().keySet()) { // ищу травоядных
-                Set<Unit> hSet = cell.getSetUnitsInCell(h);
-                if (getUnit(h) instanceof Herbivore && !hSet.isEmpty()) {
-                    int chance = ints[uc.ordinal()][h.ordinal()] / 10;  // беру шанс поедания
-                                                                      // todo если шанс равен 0 то пропускать такой шанс
-                    int random = getRandom(10); // беру случайное число от 0 до 100
-                    boolean isEat = chance > random;
-                    Unit hUnit = hSet.iterator().next();
-                    if (isEat) {
-                        System.out.printf("В %d|%d %s\n->%s %d/%d = TRUE\n",
-                                cell.getX(), cell.getY(), cUnit, hUnit, random, chance);
-                        double w;
-                        if (hUnit.getWeight() >= cUnit.getKilogramOfFood()) {
-                            w = cUnit.getKilogramOfFood();
+    private static void dinnerForCarnivore(Cell cell, UnitsName type) {
+
+        Set<Unit> unitsSet = cell.getSetUnitsInCell(type);
+        HashSet<Unit> unitsSetCopy = new HashSet<>(unitsSet);
+        for (Unit unit : unitsSetCopy) {                                  // Р±РµСЂРµРј РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ СЋРЅРёС‚Р°-С…РёС‰РЅРёРєР°
+
+            boolean isDeath = unit.getWeight() <= 0;  //  РµСЃР»Рё РІРµСЃ РјРµРЅСЊС€Рµ РёР»Рё СЂР°РІРµРЅ 0 С‚Рѕ
+            if (isDeath) {   //  СЋРЅРёС‚ СѓРјРёСЂР°РµС‚
+//                System.out.println(unit.getId() + " РЈРњР•Р  " + unit.getName() + " " + unit.getWeight() + " ");
+                unitsSet.remove(unit);
+            }
+            for (UnitsName victimType : cell.getUnitsInCell().keySet()) { // РїРµСЂРµР±РёСЂР°СЋ Р¶РёРІРѕС‚РЅС‹С… РІ СЏС‡РµР№РєРµ
+
+                boolean isEatable = CHANCE[type.ordinal()][victimType.ordinal()] > 0; //РёС‰Сѓ СЃСЉРµРґРѕР±РЅРѕРµ
+                Set<Unit> victimSet = cell.getSetUnitsInCell(victimType);
+
+
+                if (isEatable && !victimSet.isEmpty()) {           //РµСЃР»Рё РЅР°С€Р»Р° СЃСЉРµРґРѕР±РЅРѕРµ, Рё СЃРµС‚ РЅРµ РїСѓСЃС‚РѕР№ С‚Рѕ
+                    //РІС‹С‡РёСЃР»СЏСЋ С€Р°РЅСЃ РїРѕРµРґР°РЅРёСЏ  
+                    boolean isEat = CHANCE[type.ordinal()][victimType.ordinal()] / 10 > getRandom(10);
+                    double diet;     // РІРµСЃ
+                    if (isEat) {  //  РµРј :
+                        Unit victimUnit = victimSet.iterator().next(); // Р±РµСЂСѓ1 СЋРЅРёС‚Р°
+
+//                        System.out.printf("Р’ %d|%d %s\n->%s %d/%d = TRUE\n",
+//                                cell.getX(), cell.getY(), unit, victimUnit, random, chance);
+
+                        if (victimUnit.getWeight() >= unit.getKilogramOfFood()) { // РµСЃР»Рё РІРµСЃ Р¶РµСЂС‚РІС‹  >= СѓР¶РЅРѕРјСѓ РєРѕР»-РІСѓ РѕС…РѕС‚РЅРёРєСѓ РґР»СЏ РЅР°СЃС‹С‰РµРЅРёСЏ С‚Рѕ
+                            diet = unit.getKilogramOfFood();  // Р·Р°РїРёСЃС‹РІР°СЋ РІ diet СЌС‚РѕС‚ РІРµСЃ
                         } else {
-                            w = hUnit.getWeight();
+                            diet = victimUnit.getWeight(); // РёРЅР°С‡Рµ Р±РµСЂСѓ РІРµСЃ Р¶РµСЂС‚РІС‹
                         }
-                        cUnit.setWeight(cUnit.getWeight() + w);
-                        hSet.remove(hUnit);
-                    } else {
-                        double w = cUnit.getWeight() - cUnit.getKilogramOfFood() / 2;
-                        cUnit.setWeight(w);
-                        boolean isDeath = cUnit.getWeight() <= 0;
-                        if (isDeath) {
-                            ucSet.remove(cUnit);
-                            System.out.printf("В %d|%d %s\n->%s %d/%d = isDeath\n",
-                                    cell.getX(), cell.getY(), cUnit, hUnit, random, chance);
-                        }
-                        System.out.printf("В %d|%d %s\n->%s %d/%d = FALSE\n",
-                                cell.getX(), cell.getY(), cUnit, hUnit, random, chance);
+                        unit.setWeight(unit.getWeight() + diet);   // РґРѕР±Р°РІР»СЏСЋ СЃСЉРµРґРµРЅРЅРѕРµ Рє РѕС…РѕС‚РЅРёРєСѓ
+                        victimSet.remove(victimUnit); //  СѓР±РёРІР°СЋ Р¶РµСЂС‚РІСѓ
+
+                    } else { // РµСЃР»Рё Рќ Р• РµРј :
+                        diet = unit.getKilogramOfFood() / 2; //СЃС‡РёС‚Р°СЋ РїРѕС‚РµСЂСЋ РІРµСЃР°
+                        unit.setWeight(unit.getWeight() - diet); // РѕС‚РЅРёРјР°СЋ РІРµСЃ
+//                           System.out.printf("РЈРњР•Р  - isDeath- Р’ %d|%d %s\n->%s %d/%d = isDeath\n",
+//                                   cell.getX(), cell.getY(), unit, hUnit, random, chance);
                     }
+//                        System.out.printf("Р’ %d|%d %s\n->%s %d/%d = FALSE\n",
+//                                cell.getX(), cell.getY(), unit, hUnit, random, chance);
                 }
             }
+
         }
     }
-
-
 }
+
+
+
+
+
+
+        
