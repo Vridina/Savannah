@@ -13,8 +13,8 @@ public class OneDayOfLife {
         for (int i = 0; i < 50; i++) {
             System.out.println("\n=================  День " + (i + 1) + " =================");
             Analytics.getCellsStat();
-//            Reproduction.multiply();
-//            Running.run();
+            Reproduction.multiply();
+            Running.run();
             Eating.eat();
 
         }

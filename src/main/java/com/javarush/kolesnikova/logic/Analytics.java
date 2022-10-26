@@ -18,6 +18,7 @@ public class Analytics {
 
 
     public static void getCellsStat() {
+
         HashMap<UnitsName, Integer> mapStatistic = new HashMap<>(); // в мапу собираем статистику
         Cell[][] field = getField();
         for (int y = 0; y < getRowY(); y++) {
